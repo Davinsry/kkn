@@ -29,6 +29,7 @@ const PJ_OPTIONS = [
     "Nabilah El Khaira",
     "Aqbil Fauzan",
     "Nabila Alifiani",
+    "Takmir",
     "PJ Bersama-sama"
 ];
 
