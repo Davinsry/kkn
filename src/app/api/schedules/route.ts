@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const schedules = JsonDB.getAll();
         return NextResponse.json(schedules);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch schedules' }, { status: 500 });
     }
 }
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
         const newSchedules = JsonDB.create(dataList);
         return NextResponse.json(newSchedules);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to create schedules' }, { status: 500 });
     }
 }

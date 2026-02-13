@@ -30,7 +30,7 @@ export const JsonDB = {
         return this.read();
     },
 
-    create(dataList: any[]): Schedule[] {
+    create(dataList: Omit<Schedule, 'id' | 'created_at' | 'updated_at'>[]): Schedule[] {
         const schedules = this.read();
         const newItems = dataList.map(item => ({
             ...item,

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronRight, Lock, User, LogIn } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { MosqueIcon } from '@/components/mosque-icon';
 import { signJWT } from '@/lib/auth';
 
@@ -25,7 +25,7 @@ export default function LoginPage() {
                 // Set cookie with 1 year max-age
                 document.cookie = `auth_token=${token}; path=/; max-age=31536000; samesite=lax`;
                 router.push('/');
-            } catch (err) {
+            } catch {
                 setError('Terjadi kesalahan saat membuat sesi.');
                 setLoading(false);
             }

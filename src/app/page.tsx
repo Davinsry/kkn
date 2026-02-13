@@ -2,14 +2,10 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  CalendarDays,
   ClipboardList,
   Plus,
-  Clock,
-  User,
   Settings,
   LogOut,
-  Package,
   ListChecks,
 } from 'lucide-react';
 import { ScheduleService } from '@/lib/storage';
@@ -46,7 +42,7 @@ export default function HomePage() {
   const handleFormSubmit = async (data: ScheduleFormData, applyToAll?: boolean) => {
     if (editingSchedule) {
       // Update mode
-      const updateData: any = {
+      const updateData: Record<string, unknown> = {
         kegiatan: data.kegiatan,
         tanggal: data.tanggals[0],
         jam_mulai: data.jam_mulai,

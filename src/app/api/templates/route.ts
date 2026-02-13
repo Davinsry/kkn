@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const templates = TemplateDB.getAll();
         return NextResponse.json(templates);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch templates' }, { status: 500 });
     }
 }
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         if (!nama) return NextResponse.json({ error: 'Nama required' }, { status: 400 });
         const newTemplate = TemplateDB.create({ nama, jam_mulai, jam_selesai, pj, pengisi });
         return NextResponse.json(newTemplate);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to create template' }, { status: 500 });
     }
 }

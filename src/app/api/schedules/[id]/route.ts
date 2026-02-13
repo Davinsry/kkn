@@ -16,7 +16,7 @@ export async function PATCH(
             if (!target) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
             // Update time only for all matching kegiatan
-            const updateData: any = {};
+            const updateData: Record<string, string> = {};
             if (data.jam_mulai) updateData.jam_mulai = data.jam_mulai;
             if (data.jam_selesai) updateData.jam_selesai = data.jam_selesai;
 
@@ -27,7 +27,7 @@ export async function PATCH(
         const updated = JsonDB.update(params.id, data);
         if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json(updated);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to update schedule' }, { status: 500 });
     }
 }
@@ -40,7 +40,7 @@ export async function DELETE(
         const deleted = JsonDB.delete(params.id);
         if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete schedule' }, { status: 500 });
     }
 }

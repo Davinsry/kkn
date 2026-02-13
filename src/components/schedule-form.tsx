@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Popover from '@radix-ui/react-popover';
-import { X, CalendarPlus, Save, Calendar as CalendarIcon, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
+import { X, Save, Calendar as CalendarIcon } from 'lucide-react';
 import { MosqueIcon } from '@/components/mosque-icon';
 import { Schedule, ScheduleFormData, EventTemplate } from '@/lib/types';
 import { DayPicker } from 'react-day-picker';

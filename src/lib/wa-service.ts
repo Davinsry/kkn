@@ -1,5 +1,5 @@
 import { Schedule } from './types';
-import { format, addDays, isSameDay, parseISO } from 'date-fns';
+import { format, addDays } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 
 /**

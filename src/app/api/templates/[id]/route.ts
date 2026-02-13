@@ -10,7 +10,7 @@ export async function PATCH(
         const updated = TemplateDB.update(params.id, body);
         if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json(updated);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to update template' }, { status: 500 });
     }
 }
@@ -23,7 +23,7 @@ export async function DELETE(
         const deleted = TemplateDB.delete(params.id);
         if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete template' }, { status: 500 });
     }
 }

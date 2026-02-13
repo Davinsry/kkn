@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, User, Pencil, Trash2, Edit, Mic } from 'lucide-react';
+import { Clock, User, Trash2, Edit, Mic } from 'lucide-react';
 import { Schedule } from '@/lib/types';
 
 interface ScheduleCardProps {
