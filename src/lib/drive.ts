@@ -14,6 +14,12 @@ const auth = new google.auth.GoogleAuth({
     scopes: SCOPES,
 });
 
+// Add timeout to prevent long delays when Drive is problematic
+google.options({
+    timeout: 5000,
+    retry: false
+});
+
 const drive = google.drive({ version: 'v3', auth });
 
 export const GoogleDriveService = {
