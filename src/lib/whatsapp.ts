@@ -25,7 +25,7 @@ export async function connectToWhatsApp() {
     sock = makeWASocket({
         auth: state,
         printQRInTerminal: true, // Log QR to terminal for server view
-        logger: pino({ level: 'silent' }) as unknown as any,
+        logger: pino({ level: 'silent' }) as unknown as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     });
 
     sock.ev.on('creds.update', saveCreds);
@@ -39,7 +39,7 @@ export async function connectToWhatsApp() {
         }
 
         if (connection === 'close') {
-            const shouldReconnect = (lastDisconnect?.error as unknown as any)?.output?.statusCode !== DisconnectReason.loggedOut;
+            const shouldReconnect = (lastDisconnect?.error as unknown as any)?.output?.statusCode !== DisconnectReason.loggedOut; // eslint-disable-line @typescript-eslint/no-explicit-any
             console.log('Connection closed due to ', lastDisconnect?.error, ', reconnecting ', shouldReconnect);
             connectionStatus = 'close';
             qrCode = null;
