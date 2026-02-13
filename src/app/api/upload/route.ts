@@ -46,14 +46,18 @@ export async function POST(req: NextRequest) {
                     driveId: driveFile.id,
                     type: 'drive'
                 });
-            } catch (driveError) {
-                console.error('Drive upload failed, falling back to local:', driveError);
+            } catch (driveError: any) {
+                if (driveError.code === 403) {
+                    console.warn('[DRIVE] Quota Error: Service Account needs a Shared Drive. Switching to Local Storage...');
+                } else {
+                    console.error('[DRIVE] Upload failed, falling back to local:', driveError.message || driveError);
+                }
                 // Fallback continues below
             }
         }
 
         // Fallback: Local Upload
-        console.log('Uploading to local storage...');
+        console.log('[LOCAL] Saving file to server storage...');
         const buffer = Buffer.from(await file.arrayBuffer());
         const filename = Date.now() + '-' + file.name.replace(/\s/g, '-');
 
