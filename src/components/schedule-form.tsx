@@ -304,7 +304,7 @@ export default function ScheduleForm({
                                     className="h-5 w-5 rounded border-amber-300 text-amber-600 focus:ring-amber-500 accent-amber-600"
                                 />
                                 <label htmlFor="applyToAll" className="text-xs font-bold text-amber-700 cursor-pointer">
-                                    Terapkan jam, PJ & pengisi ke <span className="underline">semua</span> jadwal &ldquo;{formData.kegiatan}&rdquo;
+                                    Terapkan jam ke <span className="underline">semua</span> jadwal &ldquo;{formData.kegiatan}&rdquo;
                                 </label>
                             </div>
                         )}

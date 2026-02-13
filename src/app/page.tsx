@@ -10,6 +10,7 @@ import {
   Settings,
   LogOut,
   Package,
+  ListChecks,
 } from 'lucide-react';
 import { ScheduleService } from '@/lib/storage';
 import { Schedule, ScheduleFormData } from '@/lib/types';
@@ -17,6 +18,7 @@ import ScheduleForm from '@/components/schedule-form';
 import ScheduleCard from '@/components/schedule-card';
 import DeleteDialog from '@/components/delete-dialog';
 import CalendarView from '@/components/calendar-view';
+import TemplateManager from '@/components/template-manager';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { MosqueIcon } from '@/components/mosque-icon';
@@ -29,6 +31,7 @@ export default function HomePage() {
   const [selectedDate, setSelectedDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [mounted, setMounted] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isTemplateOpen, setIsTemplateOpen] = useState(false);
 
   const loadSchedules = useCallback(async () => {
     const data = await ScheduleService.getAll();
@@ -133,6 +136,14 @@ export default function HomePage() {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
+            <button
+              onClick={() => setIsTemplateOpen(true)}
+              className="flex items-center gap-1.5 rounded-xl bg-emerald-50 px-3 py-2 text-emerald-600 border border-emerald-100 transition-all hover:bg-emerald-100 hover:text-emerald-700 active:scale-95"
+              title="Kelola Template Acara"
+            >
+              <ListChecks className="h-4 w-4" />
+              <span className="hidden sm:inline text-xs font-black">Kelola Acara</span>
+            </button>
             <button
               onClick={handleSync}
               disabled={isSyncing}
@@ -243,6 +254,12 @@ export default function HomePage() {
         }}
         onConfirm={handleDelete}
         title={deleteTarget?.kegiatan || ''}
+      />
+
+      {/* Template Manager */}
+      <TemplateManager
+        open={isTemplateOpen}
+        onOpenChange={setIsTemplateOpen}
       />
     </div>
   );

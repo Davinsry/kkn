@@ -15,12 +15,10 @@ export async function PATCH(
             const target = all.find(s => s.id === params.id);
             if (!target) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-            // Update time/pj/pengisi for all matching kegiatan
+            // Update time only for all matching kegiatan
             const updateData: any = {};
             if (data.jam_mulai) updateData.jam_mulai = data.jam_mulai;
             if (data.jam_selesai) updateData.jam_selesai = data.jam_selesai;
-            if (data.pj) updateData.pj = data.pj;
-            if (data.pengisi !== undefined) updateData.pengisi = data.pengisi;
 
             const count = JsonDB.updateAllByKegiatan(target.kegiatan, updateData);
             return NextResponse.json({ success: true, updated: count });
