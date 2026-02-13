@@ -351,7 +351,7 @@ export default function CashflowManager() {
                                                 </p>
                                                 {t.proof_image && (
                                                     <button
-                                                        onClick={() => setViewerImage(t.proof_image || null)}
+                                                        onClick={() => setViewImage(t.proof_image || null)}
                                                         className="rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold text-indigo-600 hover:bg-indigo-100"
                                                     >
                                                         Lihat Bukti
