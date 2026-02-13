@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Plus, Trash2, TrendingUp, TrendingDown, Wallet } from 'lucide-react';
+import { Plus, Trash2, TrendingUp, TrendingDown, Wallet, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface TransactionItem {
@@ -43,6 +43,7 @@ export default function CashflowManager() {
     const [amount, setAmount] = useState(''); // Store as string with dots
     const [type, setType] = useState<'income' | 'expense'>('income');
     const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [viewDate, setViewDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [personName, setPersonName] = useState('');
     const [proofImage, setProofImage] = useState<string | undefined>(undefined);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -50,6 +51,22 @@ export default function CashflowManager() {
 
     // View State
     const [viewImage, setViewImage] = useState<string | null>(null);
+
+    const handleNextDay = () => {
+        const d = new Date(viewDate);
+        d.setDate(d.getDate() + 1);
+        setViewDate(format(d, 'yyyy-MM-dd'));
+    };
+
+    const handlePrevDay = () => {
+        const d = new Date(viewDate);
+        d.setDate(d.getDate() - 1);
+        setViewDate(format(d, 'yyyy-MM-dd'));
+    };
+
+    const handleToday = () => {
+        setViewDate(format(new Date(), 'yyyy-MM-dd'));
+    };
 
     const fetchTransactions = useCallback(async () => {
         try {
@@ -328,16 +345,52 @@ export default function CashflowManager() {
                 </div>
             )}
 
+            {/* Date Navigation */}
+            <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-white p-4 sm:flex-row">
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={handlePrevDay}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-600 transition-all hover:bg-slate-100 active:scale-95"
+                    >
+                        <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <div className="flex flex-col items-center min-w-[150px] px-2">
+                        <div className="flex items-center gap-2 mb-1">
+                            <Calendar className="h-3 w-3 text-indigo-500" />
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Melihat Tanggal</p>
+                        </div>
+                        <p className="text-sm font-black text-slate-900">
+                            {format(new Date(viewDate), 'dd/MM/yyyy')}
+                        </p>
+                    </div>
+                    <button
+                        onClick={handleNextDay}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-600 transition-all hover:bg-slate-100 active:scale-95"
+                    >
+                        <ChevronRight className="h-5 w-5" />
+                    </button>
+                </div>
+
+                <button
+                    onClick={handleToday}
+                    className="flex items-center gap-2 rounded-xl bg-indigo-50 px-5 py-2.5 text-[10px] font-black text-indigo-600 transition-all hover:bg-indigo-100 active:scale-95"
+                >
+                    <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    HARI INI
+                </button>
+            </div>
+
             {/* Transaction List */}
             <div className="space-y-3">
                 {loading ? (
                     <div className="text-center py-10 text-slate-400 text-xs">Memuat data...</div>
-                ) : transactions.length === 0 ? (
+                ) : transactions.filter(t => t.date === viewDate).length === 0 ? (
                     <div className="text-center py-10 rounded-2xl border border-dashed border-slate-200">
-                        <p className="text-sm font-bold text-slate-400">Belum ada data keuangan</p>
+                        <p className="text-sm font-bold text-slate-400">Tidak ada transaksi pada tanggal ini</p>
                     </div>
                 ) : (
                     transactions
+                        .filter(t => t.date === viewDate)
                         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                         .map(t => (
                             <div key={t.id} className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-4 transition-all hover:border-slate-200 hover:shadow-md">
