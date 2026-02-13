@@ -74,7 +74,10 @@ export default function CashflowManager() {
         setUploading(true);
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('type', type); // Send current type (income/expense)
+        formData.append('type', type);
+        formData.append('title', title);
+        formData.append('personName', personName);
+        formData.append('date', date);
 
         try {
             const res = await fetch('/api/upload', {
@@ -347,7 +350,7 @@ export default function CashflowManager() {
                                             )}
                                             <div className="mt-1 flex items-center gap-2">
                                                 <p className="text-[10px] font-bold text-slate-400">
-                                                    {format(new Date(t.date), 'd MMMM yyyy', { locale: idLocale })}
+                                                    {format(new Date(t.date), 'dd/MM/yyyy')}
                                                 </p>
                                                 {t.proof_image && (
                                                     <button

@@ -9,28 +9,37 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData();
         const file = formData.get('file') as File;
         const type = formData.get('type') as string; // 'income' or 'expense'
+        const title = formData.get('title') as string || 'Tanpa-Judul';
+        const personName = formData.get('personName') as string || 'Anonim';
+        const rawDate = formData.get('date') as string; // yyyy-MM-dd
 
         if (!file) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
         }
 
+        // Format Date for Filename: dd/mm/yyyy -> dd-mm-yyyy for filesystem safety
+        let formattedDate = '';
+        if (rawDate) {
+            const [y, m, d] = rawDate.split('-');
+            formattedDate = `${d}-${m}-${y}`;
+        } else {
+            formattedDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+        }
+
+        // Custom Filename: Judul Setor dd-mm-yyyy
+        const customFilename = `${title} ${personName} ${formattedDate}`.replace(/[/\\?%*:|"<>]/g, '-');
+        const extension = path.extname(file.name);
+        const finalFilename = `${customFilename}${extension}`;
+
         // Check if Drive is Configured
         const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
-        const credPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || '';
-        const absoluteCredPath = path.resolve(process.cwd(), credPath);
-        const hasCredentials = credPath && fs.existsSync(absoluteCredPath);
+        const incomeFolderId = process.env.GOOGLE_DRIVE_INCOME_FOLDER_ID || folderId;
+        const outcomeFolderId = process.env.GOOGLE_DRIVE_OUTCOME_FOLDER_ID || folderId;
+
         const isEnabled = process.env.ENABLE_GOOGLE_DRIVE === 'true';
 
-        console.log('[DEBUG] Drive Config Check:');
-        console.log('- Folder ID:', folderId ? 'Set' : 'Missing');
-        console.log('- Cred Path (Env):', credPath);
-        console.log('- Absolute Path:', absoluteCredPath);
-        console.log('- File Exists:', hasCredentials);
-        console.log('- Enabled (Env):', isEnabled);
-
-        if (folderId && hasCredentials && isEnabled) {
+        if (folderId && isEnabled) {
             // ... existing drive logic ...
-            // (Keeping it for reference or if user switches back)
         }
 
         // --- N8N INTEGRATION ---
@@ -44,13 +53,18 @@ export async function POST(req: NextRequest) {
         if (enableN8n && n8nUrl) {
             try {
                 console.log('[N8N] Pushing to:', n8nUrl);
-                console.log('[N8N] File:', file.name, 'Size:', file.size);
+                console.log('[N8N] Custom Name:', finalFilename);
+
+                const targetFolderId = type === 'income' ? incomeFolderId : outcomeFolderId;
 
                 const n8nFormData = new FormData();
                 n8nFormData.append('data', file);
-                n8nFormData.append('filename', file.name);
+                n8nFormData.append('filename', finalFilename);
                 n8nFormData.append('type', type || 'general');
-                n8nFormData.append('folderId', folderId || '');
+                n8nFormData.append('folderId', targetFolderId || '');
+                n8nFormData.append('title', title);
+                n8nFormData.append('personName', personName);
+                n8nFormData.append('date', formattedDate.replace(/-/g, '/'));
 
                 const n8nRes = await fetch(n8nUrl, {
                     method: 'POST',
@@ -59,12 +73,11 @@ export async function POST(req: NextRequest) {
 
                 const responseText = await n8nRes.text();
                 console.log('[N8N] Response Status:', n8nRes.status);
-                console.log('[N8N] Response Body:', responseText);
 
                 if (n8nRes.ok) {
                     try {
                         const n8nData = JSON.parse(responseText);
-                        console.log('[N8N] Success Parse JSON');
+                        console.log('[N8N] Success');
                         if (n8nData.url || n8nData.webViewLink) {
                             return NextResponse.json({
                                 url: n8nData.url || n8nData.webViewLink,
@@ -84,19 +97,18 @@ export async function POST(req: NextRequest) {
 
         // Fallback: Local Upload
         const buffer = Buffer.from(await file.arrayBuffer());
-        const filename = Date.now() + '-' + file.name.replace(/\s/g, '-');
         const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
 
-        const filepath = path.join(uploadDir, filename);
+        const filepath = path.join(uploadDir, finalFilename);
         console.log('[LOCAL] Menyimpan file ke:', filepath);
         await writeFile(filepath, buffer);
 
         return NextResponse.json({
-            url: `/api/uploads/${filename}`,
+            url: `/api/uploads/${finalFilename}`,
             type: 'local'
         });
 
