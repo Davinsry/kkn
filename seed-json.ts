@@ -44,7 +44,7 @@ const schedules = [
     { kegiatan: 'Penayangan Film Anak Islami', tanggal: '2026-02-21', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Ristia') },
     { kegiatan: 'Penayangan Film Anak Islami', tanggal: '2026-02-28', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Ristia') },
     ...generateRange('Kajian Ba\'da Subuh', '2026-02-12', '2026-03-12', '05:00', '06:00', getPJ('Ika')),
-    { kegiatan: 'Tadarus Ba\'da Tarawih', tanggal: '2026-03-12', jam_mulai: '21:00', jam_selesai: '22:00', pj: getPJ('Davin') },
+    ...generateRange('Tadarus Ba\'da Tarawih', '2026-03-12', '2026-03-17', '21:00', '22:00', getPJ('Davin')),
     ...generateRange('Mengajar TPA', '2026-02-12', '2026-03-08', '16:00', '17:00', getPJ('Tyas'), [4, 5, 6]),
     { kegiatan: 'Pelatihan Khatib Jumat', tanggal: '2026-03-05', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Agung') },
     { kegiatan: 'Pelatihan Khatib Jumat', tanggal: '2026-03-10', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Agung') },
