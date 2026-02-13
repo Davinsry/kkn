@@ -35,7 +35,7 @@ export default function NotesManager() {
             const res = await fetch('/api/notes');
             const data = await res.json();
             setNotes(data);
-        } catch (error) {
+        } catch (_error) {
             console.error('Failed to fetch notes', error);
         } finally {
             setLoading(false);
@@ -60,7 +60,7 @@ export default function NotesManager() {
             setColor(COLORS[0].value);
             setIsFormOpen(false);
             fetchNotes();
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal menyimpan catatan');
         }
     };
@@ -72,7 +72,7 @@ export default function NotesManager() {
         try {
             await fetch(`/api/notes/${id}`, { method: 'DELETE' });
             fetchNotes();
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal menghapus');
         }
     };

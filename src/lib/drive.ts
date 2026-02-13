@@ -19,8 +19,8 @@ export const GoogleDriveService = {
     async uploadFile(file: File, folderId: string) {
         try {
             const buffer = Buffer.from(await file.arrayBuffer());
-            const stream = require('stream');
-            const bufferStream = new stream.PassThrough();
+            const { PassThrough } = await import('stream');
+            const bufferStream = new PassThrough();
             bufferStream.end(buffer);
 
             const response = await drive.files.create({

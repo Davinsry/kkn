@@ -56,7 +56,7 @@ export default function CashflowManager() {
             const res = await fetch('/api/cashflow');
             const data = await res.json();
             setTransactions(data);
-        } catch (error) {
+        } catch (_error) {
             console.error('Failed to fetch transactions', error);
         } finally {
             setLoading(false);
@@ -85,7 +85,7 @@ export default function CashflowManager() {
             if (data.url) {
                 setProofImage(data.url);
             }
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal upload gambar');
         } finally {
             setUploading(false);
@@ -128,7 +128,7 @@ export default function CashflowManager() {
             setProofImage(undefined);
             setIsFormOpen(false);
             fetchTransactions();
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal menyimpan');
         }
     };
@@ -138,7 +138,7 @@ export default function CashflowManager() {
         try {
             await fetch(`/api/cashflow/${id}`, { method: 'DELETE' });
             fetchTransactions();
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal menghapus');
         }
     };
