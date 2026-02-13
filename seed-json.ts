@@ -5,7 +5,7 @@ const PJ_MAP: { [key: string]: string } = {
     'Aqbil': 'Aqbil Fauzan',
     'Alifia': 'Nabila Alifiani',
     'Ristia': 'Ristia Afrisabella',
-    'Ika': 'Fitria Sasyabela Andartina',
+    'Ika': 'Arrizka Nafisah Al Gall',
     'Davin': 'Muhammad Davin Surya',
     'Tyas': 'Fitria Sasyabela Andartina',
     'Agung': 'Agung Rezki',
