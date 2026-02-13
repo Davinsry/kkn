@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, Trash2, TrendingUp, TrendingDown, Wallet } from 'lucide-react';
 import { format } from 'date-fns';
-import { id as idLocale } from 'date-fns/locale';
 
 interface TransactionItem {
     id: string;
