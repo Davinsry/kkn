@@ -36,7 +36,6 @@ export const GoogleDriveService = {
 
             return response.data;
         } catch (error) {
-            console.error('Google Drive Upload Error:', error);
             throw error;
         }
     },
