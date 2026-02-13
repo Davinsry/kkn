@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Popover from '@radix-ui/react-popover';
-import { X, CalendarPlus, Save, Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, CalendarPlus, Save, Calendar as CalendarIcon, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { MosqueIcon } from '@/components/mosque-icon';
-import { Schedule, ScheduleFormData } from '@/lib/types';
+import { Schedule, ScheduleFormData, EventTemplate } from '@/lib/types';
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
@@ -14,7 +14,7 @@ import 'react-day-picker/dist/style.css';
 interface ScheduleFormProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onSubmit: (data: ScheduleFormData) => void;
+    onSubmit: (data: ScheduleFormData, applyToAll?: boolean) => void;
     editingSchedule?: Schedule | null;
 }
 
@@ -39,6 +39,9 @@ export default function ScheduleForm({
     onSubmit,
     editingSchedule,
 }: ScheduleFormProps) {
+    const [templates, setTemplates] = useState<EventTemplate[]>([]);
+    const [selectedTemplate, setSelectedTemplate] = useState<string>('');
+    const [applyToAll, setApplyToAll] = useState(false);
     const [formData, setFormData] = useState<{
         kegiatan: string;
         tanggals: Date[];
@@ -55,6 +58,14 @@ export default function ScheduleForm({
         pengisi: '',
     });
 
+    // Load templates
+    useEffect(() => {
+        fetch('/api/templates')
+            .then(res => res.json())
+            .then(data => setTemplates(data))
+            .catch(() => { });
+    }, [open]);
+
     useEffect(() => {
         if (editingSchedule) {
             setFormData({
@@ -65,6 +76,8 @@ export default function ScheduleForm({
                 pj: editingSchedule.pj,
                 pengisi: editingSchedule.pengisi || '',
             });
+            setSelectedTemplate('');
+            setApplyToAll(false);
         } else {
             setFormData({
                 kegiatan: '',
@@ -74,8 +87,25 @@ export default function ScheduleForm({
                 pj: '',
                 pengisi: '',
             });
+            setSelectedTemplate('');
+            setApplyToAll(false);
         }
     }, [editingSchedule, open]);
+
+    const handleTemplateSelect = (templateId: string) => {
+        setSelectedTemplate(templateId);
+        const template = templates.find(t => t.id === templateId);
+        if (template) {
+            setFormData(prev => ({
+                ...prev,
+                kegiatan: template.nama,
+                jam_mulai: template.jam_mulai,
+                jam_selesai: template.jam_selesai,
+                pj: template.pj,
+                pengisi: template.pengisi || '',
+            }));
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -86,7 +116,7 @@ export default function ScheduleForm({
         onSubmit({
             ...formData,
             tanggals: formData.tanggals.map(d => format(d, 'yyyy-MM-dd'))
-        });
+        }, applyToAll);
         onOpenChange(false);
     };
 
@@ -109,6 +139,25 @@ export default function ScheduleForm({
                     </Dialog.Description>
 
                     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                        {/* Template Selector (only for new) */}
+                        {!isEditing && templates.length > 0 && (
+                            <div>
+                                <label className="mb-1.5 block text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                    Pilih Template Acara
+                                </label>
+                                <select
+                                    value={selectedTemplate}
+                                    onChange={(e) => handleTemplateSelect(e.target.value)}
+                                    className="w-full rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold text-emerald-700 outline-none transition-all focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2310b981%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.25em_1.25em] bg-[right_1rem_center] bg-no-repeat sm:py-3"
+                                >
+                                    <option value="">-- Pilih Acara --</option>
+                                    {templates.map((t) => (
+                                        <option key={t.id} value={t.id}>{t.nama}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+
                         {/* Kegiatan */}
                         <div>
                             <label className="mb-1.5 block text-[10px] font-black uppercase tracking-widest text-slate-400">
@@ -243,6 +292,22 @@ export default function ScheduleForm({
                                 placeholder="Contoh: Ustadz ... / Takmir"
                             />
                         </div>
+
+                        {/* Apply to All (only when editing) */}
+                        {isEditing && (
+                            <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-3">
+                                <input
+                                    type="checkbox"
+                                    id="applyToAll"
+                                    checked={applyToAll}
+                                    onChange={(e) => setApplyToAll(e.target.checked)}
+                                    className="h-5 w-5 rounded border-amber-300 text-amber-600 focus:ring-amber-500 accent-amber-600"
+                                />
+                                <label htmlFor="applyToAll" className="text-xs font-bold text-amber-700 cursor-pointer">
+                                    Terapkan jam, PJ & pengisi ke <span className="underline">semua</span> jadwal &ldquo;{formData.kegiatan}&rdquo;
+                                </label>
+                            </div>
+                        )}
 
                         {/* Buttons */}
                         <div className="flex flex-col-reverse gap-3 pt-6 sm:flex-row">

@@ -13,7 +13,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { kegiatan, tanggals, jam_mulai, jam_selesai, pj } = body;
+        const { kegiatan, tanggals, jam_mulai, jam_selesai, pj, pengisi } = body;
 
         const dataList = tanggals.map((tanggal: string) => ({
             kegiatan,
@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
             jam_mulai,
             jam_selesai,
             pj,
+            ...(pengisi ? { pengisi } : {}),
         }));
 
         const newSchedules = JsonDB.create(dataList);

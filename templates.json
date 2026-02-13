@@ -1,0 +1,93 @@
+[
+    {
+        "id": "t1",
+        "nama": "Revitalisasi Ruang Masjid",
+        "jam_mulai": "07:00",
+        "jam_selesai": "08:00",
+        "pj": "Aqbil Fauzan"
+    },
+    {
+        "id": "t2",
+        "nama": "Buka Bersama",
+        "jam_mulai": "18:00",
+        "jam_selesai": "19:00",
+        "pj": "Nabila Alifiani"
+    },
+    {
+        "id": "t3",
+        "nama": "Penayangan Film Anak Islami",
+        "jam_mulai": "07:00",
+        "jam_selesai": "08:00",
+        "pj": "Ristia Afrisabella"
+    },
+    {
+        "id": "t4",
+        "nama": "Kajian Ba'da Subuh",
+        "jam_mulai": "05:00",
+        "jam_selesai": "06:00",
+        "pj": "Arrizka Nafisah Al Gall"
+    },
+    {
+        "id": "t5",
+        "nama": "Tadarus Ba'da Tarawih",
+        "jam_mulai": "21:00",
+        "jam_selesai": "22:00",
+        "pj": "Muhammad Davin Surya"
+    },
+    {
+        "id": "t6",
+        "nama": "Kultum Ba'da Isya",
+        "jam_mulai": "19:30",
+        "jam_selesai": "20:00",
+        "pj": "Takmir"
+    },
+    {
+        "id": "t7",
+        "nama": "Mengajar TPA",
+        "jam_mulai": "16:00",
+        "jam_selesai": "17:00",
+        "pj": "Fitria Sasyabela Andartina"
+    },
+    {
+        "id": "t8",
+        "nama": "Pelatihan Khatib Jumat",
+        "jam_mulai": "07:00",
+        "jam_selesai": "08:00",
+        "pj": "Agung Rezki"
+    },
+    {
+        "id": "t9",
+        "nama": "Happy Ramadan Kids",
+        "jam_mulai": "07:00",
+        "jam_selesai": "08:00",
+        "pj": "PJ Bersama-sama"
+    },
+    {
+        "id": "t10",
+        "nama": "Gerakan Sedekah Masjid",
+        "jam_mulai": "07:00",
+        "jam_selesai": "08:00",
+        "pj": "Nabilah El Khaira"
+    },
+    {
+        "id": "t11",
+        "nama": "Kunjungan UMKM",
+        "jam_mulai": "07:00",
+        "jam_selesai": "10:00",
+        "pj": "Achmad Baiquni Afif Thaaha"
+    },
+    {
+        "id": "t12",
+        "nama": "Pengajian Aisyiyah",
+        "jam_mulai": "08:30",
+        "jam_selesai": "12:00",
+        "pj": "PJ Bersama-sama"
+    },
+    {
+        "id": "t13",
+        "nama": "Pesantren Kilat",
+        "jam_mulai": "18:00",
+        "jam_selesai": "19:00",
+        "pj": "Agung Rezki"
+    }
+]

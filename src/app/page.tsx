@@ -40,17 +40,27 @@ export default function HomePage() {
     loadSchedules();
   }, [loadSchedules]);
 
-  const handleCreate = async (data: ScheduleFormData) => {
-    await ScheduleService.create(data);
-    loadSchedules();
-  };
-
-  const handleUpdate = async (data: Partial<Schedule>) => {
+  const handleFormSubmit = async (data: ScheduleFormData, applyToAll?: boolean) => {
     if (editingSchedule) {
-      await ScheduleService.update(editingSchedule.id, data);
+      // Update mode
+      const updateData: any = {
+        kegiatan: data.kegiatan,
+        tanggal: data.tanggals[0],
+        jam_mulai: data.jam_mulai,
+        jam_selesai: data.jam_selesai,
+        pj: data.pj,
+        pengisi: data.pengisi || '',
+      };
+      if (applyToAll) {
+        updateData.applyToAll = true;
+      }
+      await ScheduleService.update(editingSchedule.id, updateData);
       setEditingSchedule(null);
-      loadSchedules();
+    } else {
+      // Create mode
+      await ScheduleService.create(data);
     }
+    loadSchedules();
   };
 
   const handleDelete = async () => {
@@ -221,7 +231,7 @@ export default function HomePage() {
           setIsFormOpen(open);
           if (!open) setEditingSchedule(null);
         }}
-        onSubmit={editingSchedule ? handleUpdate : handleCreate}
+        onSubmit={handleFormSubmit}
         editingSchedule={editingSchedule}
       />
 

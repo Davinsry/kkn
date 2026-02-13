@@ -63,5 +63,22 @@ export const JsonDB = {
         if (filtered.length === schedules.length) return false;
         this.write(filtered);
         return true;
+    },
+
+    updateAllByKegiatan(kegiatan: string, data: Partial<Schedule>): number {
+        const schedules = this.read();
+        let count = 0;
+        schedules.forEach((s, i) => {
+            if (s.kegiatan === kegiatan) {
+                schedules[i] = {
+                    ...s,
+                    ...data,
+                    updated_at: new Date().toISOString(),
+                };
+                count++;
+            }
+        });
+        if (count > 0) this.write(schedules);
+        return count;
     }
 };

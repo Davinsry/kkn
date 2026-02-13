@@ -20,3 +20,12 @@ export interface ScheduleFormData {
   pj: string;
   pengisi?: string;
 }
+
+export interface EventTemplate {
+  id: string;
+  nama: string;
+  jam_mulai: string;
+  jam_selesai: string;
+  pj: string;
+  pengisi?: string;
+}

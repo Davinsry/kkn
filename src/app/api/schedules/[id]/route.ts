@@ -7,7 +7,26 @@ export async function PATCH(
 ) {
     try {
         const body = await req.json();
-        const updated = JsonDB.update(params.id, body);
+        const { applyToAll, ...data } = body;
+
+        if (applyToAll) {
+            // Find the schedule to get its kegiatan name
+            const all = JsonDB.getAll();
+            const target = all.find(s => s.id === params.id);
+            if (!target) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+
+            // Update time/pj/pengisi for all matching kegiatan
+            const updateData: any = {};
+            if (data.jam_mulai) updateData.jam_mulai = data.jam_mulai;
+            if (data.jam_selesai) updateData.jam_selesai = data.jam_selesai;
+            if (data.pj) updateData.pj = data.pj;
+            if (data.pengisi !== undefined) updateData.pengisi = data.pengisi;
+
+            const count = JsonDB.updateAllByKegiatan(target.kegiatan, updateData);
+            return NextResponse.json({ success: true, updated: count });
+        }
+
+        const updated = JsonDB.update(params.id, data);
         if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json(updated);
     } catch (error) {
