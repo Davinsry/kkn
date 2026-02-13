@@ -7,7 +7,7 @@ const KEY_FILE_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS
     ? path.resolve(process.env.GOOGLE_APPLICATION_CREDENTIALS)
     : path.join(process.cwd(), 'kknmh-487307-eb652448f0d0.json');
 
-const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 const auth = new google.auth.GoogleAuth({
     keyFile: KEY_FILE_PATH,
@@ -25,7 +25,7 @@ export const GoogleDriveService = {
             const response = await drive.files.create({
                 requestBody: {
                     name: file.name,
-                    parents: [folderId], // Upload to specific folder
+                    parents: [folderId],
                 },
                 media: {
                     mimeType: file.type,
@@ -43,7 +43,6 @@ export const GoogleDriveService = {
 
     async getOrCreateSubfolder(parentId: string, folderName: string) {
         try {
-            // Check if folder exists
             const q = `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and '${parentId}' in parents and trashed=false`;
             const listRes = await drive.files.list({
                 q,
@@ -55,7 +54,6 @@ export const GoogleDriveService = {
                 return listRes.data.files[0].id;
             }
 
-            // Create if not exists
             const createRes = await drive.files.create({
                 requestBody: {
                     name: folderName,
