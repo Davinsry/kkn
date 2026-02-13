@@ -8,6 +8,8 @@ export interface Transaction {
     type: 'income' | 'expense';
     date: string;
     category: string;
+    person_name: string;
+    proof_image?: string;
     created_at: string;
 }
 

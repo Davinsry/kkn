@@ -13,9 +13,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { title, amount, type, date, category } = body;
+        const { title, amount, type, date, category, person_name, proof_image } = body;
 
-        if (!title || !amount || !type || !date) {
+        if (!title || !amount || !type || !date || !person_name) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
@@ -25,6 +25,8 @@ export async function POST(req: NextRequest) {
             type,
             date,
             category: category || 'Umum',
+            person_name,
+            proof_image
         });
 
         return NextResponse.json(newTransaction);
