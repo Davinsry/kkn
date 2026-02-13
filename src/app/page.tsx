@@ -17,6 +17,7 @@ import CalendarView from '@/components/calendar-view';
 import TemplateManager from '@/components/template-manager';
 import SettingsDialog from '@/components/settings-dialog';
 import CashflowManager from '@/components/cashflow-manager';
+import NotesManager from '@/components/notes-manager';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { MosqueIcon } from '@/components/mosque-icon';
@@ -241,6 +242,11 @@ export default function HomePage() {
         {/* Cashflow Section - Full Width */}
         <div className="mt-12 border-t border-slate-200 pt-8">
           <CashflowManager />
+        </div>
+
+        {/* Notes Section - Full Width */}
+        <div className="mt-12 border-t border-slate-200 pt-8 pb-20">
+          <NotesManager />
         </div>
       </div>
 
