@@ -46,8 +46,9 @@ export async function POST(req: NextRequest) {
                     driveId: driveFile.id,
                     type: 'drive'
                 });
-            } catch (driveError: any) {
-                if (driveError.code === 403) {
+            } catch (driveError: unknown) {
+                const error = driveError as any;
+                if (error.code === 403) {
                     console.warn('[DRIVE] Quota Error: Service Account needs a Shared Drive. Switching to Local Storage...');
                 } else {
                     console.error('[DRIVE] Upload failed, falling back to local:', driveError.message || driveError);
