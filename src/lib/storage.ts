@@ -49,7 +49,7 @@ export const ScheduleService = {
                 throw new Error('API failed');
             }
             return res.json();
-        } catch (e) {
+        } catch {
             return this.getAllLocal().find((s) => s.id === id);
         }
     },
