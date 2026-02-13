@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
         const filepath = path.join(uploadDir, filename);
         await writeFile(filepath, buffer);
 
-        return NextResponse.json({ url: `/uploads/${filename}`, type: 'local' });
+        return NextResponse.json({ url: `/api/uploads/${filename}`, type: 'local' });
 
     } catch (error) {
         console.error('Error uploading file:', error);
