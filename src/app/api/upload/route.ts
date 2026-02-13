@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
 import { writeFile } from 'fs/promises';
-import { GoogleDriveService } from '@/lib/drive';
 
 export async function POST(req: NextRequest) {
     try {
