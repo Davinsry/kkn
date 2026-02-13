@@ -9,6 +9,10 @@ export async function GET(
     const filename = params.filename;
     const filePath = path.join(process.cwd(), 'public', 'uploads', filename);
 
+    console.log('[SERVING] Request:', filename);
+    console.log('[SERVING] Absolute Path:', filePath);
+    console.log('[SERVING] Exists:', fs.existsSync(filePath));
+
     if (!fs.existsSync(filePath)) {
         return new NextResponse('File not found', { status: 404 });
     }

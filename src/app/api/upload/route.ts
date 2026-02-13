@@ -49,30 +49,31 @@ export async function POST(req: NextRequest) {
                 });
             } catch (driveError: unknown) {
                 if (driveError && typeof driveError === 'object' && 'code' in driveError && (driveError as { code: number }).code === 403) {
-                    console.warn('[DRIVE] Quota Error: Service Account needs a Shared Drive. Switching to Local Storage...');
-                } else if (driveError instanceof Error) {
-                    console.error('[DRIVE] Upload failed, falling back to local:', driveError.message);
+                    console.warn('[DRIVE] Quota Error (403): Robot tidak punya kuota di Drive Pribadi. Beralih ke penyimpanan Lokal Server...');
                 } else {
-                    console.error('[DRIVE] Upload failed, falling back to local:', driveError);
+                    console.error('[DRIVE] Gagal upload ke Drive, beralih ke Lokal:', driveError);
                 }
                 // Fallback continues below
             }
         }
 
         // Fallback: Local Upload
-        console.log('[LOCAL] Saving file to server storage...');
         const buffer = Buffer.from(await file.arrayBuffer());
         const filename = Date.now() + '-' + file.name.replace(/\s/g, '-');
-
         const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
 
         const filepath = path.join(uploadDir, filename);
+        console.log('[LOCAL] Menyimpan file ke:', filepath);
         await writeFile(filepath, buffer);
 
-        return NextResponse.json({ url: `/api/uploads/${filename}`, type: 'local' });
+        return NextResponse.json({
+            url: `/api/uploads/${filename}`,
+            type: 'local'
+        });
 
     } catch (error) {
         console.error('Error uploading file:', error);
