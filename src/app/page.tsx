@@ -15,6 +15,7 @@ import ScheduleCard from '@/components/schedule-card';
 import DeleteDialog from '@/components/delete-dialog';
 import CalendarView from '@/components/calendar-view';
 import TemplateManager from '@/components/template-manager';
+import SettingsDialog from '@/components/settings-dialog';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { MosqueIcon } from '@/components/mosque-icon';
@@ -148,7 +149,11 @@ export default function HomePage() {
             >
               <ClipboardList className={`h-4 w-4 ${isSyncing ? 'animate-spin' : ''}`} />
             </button>
-            <button className="hidden sm:flex rounded-xl bg-slate-50 p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-900">
+            <button
+              onClick={() => setIsSettingsOpen(true)}
+              className="hidden sm:flex rounded-xl bg-slate-50 p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-900"
+              title="Pengaturan Notifikasi"
+            >
               <Settings className="h-4 w-4" />
             </button>
             <div className="flex items-center gap-1.5 sm:gap-2 rounded-xl bg-blue-50 px-2 py-1 sm:px-3 sm:py-1.5 text-blue-600 border border-blue-100">
