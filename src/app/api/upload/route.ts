@@ -37,6 +37,10 @@ export async function POST(req: NextRequest) {
         const n8nUrl = process.env.N8N_WEBHOOK_URL;
         const enableN8n = process.env.ENABLE_N8N === 'true';
 
+        console.log('[DEBUG] n8n Config Check:');
+        console.log('- Webhook URL:', n8nUrl ? 'Set' : 'Missing');
+        console.log('- Enabled (Env):', enableN8n);
+
         if (enableN8n && n8nUrl) {
             try {
                 console.log('[N8N] Pushing to:', n8nUrl);
