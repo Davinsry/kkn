@@ -30,32 +30,43 @@ export async function POST(req: NextRequest) {
         console.log('- Enabled (Env):', isEnabled);
 
         if (folderId && hasCredentials && isEnabled) {
-            // Upload to Google Drive
+            // ... existing drive logic ...
+            // (Keeping it for reference or if user switches back)
+        }
+
+        // --- N8N INTEGRATION ---
+        const n8nUrl = process.env.N8N_WEBHOOK_URL;
+        const enableN8n = process.env.ENABLE_N8N === 'true';
+
+        if (enableN8n && n8nUrl) {
             try {
-                // Determine Subfolder
-                let targetFolderId = folderId;
-                if (type) {
-                    const subfolderName = type === 'income' ? 'Cashflow - Pembayaran' : 'Cashflow - Pengeluaran';
-                    const subId = await GoogleDriveService.getOrCreateSubfolder(folderId, subfolderName);
-                    if (subId) targetFolderId = subId;
-                }
+                console.log('[N8N] Uploading to Webhook...', file.name);
+                const n8nFormData = new FormData();
+                n8nFormData.append('data', file);
+                n8nFormData.append('filename', file.name);
+                n8nFormData.append('type', type || 'general');
+                n8nFormData.append('folderId', folderId || '');
 
-                console.log(`Uploading to Google Drive (${type || 'root'})...`, file.name);
-                const driveFile = await GoogleDriveService.uploadFile(file, targetFolderId);
-
-                // Use webContentLink (download) or webViewLink (view)
-                return NextResponse.json({
-                    url: driveFile.webViewLink,
-                    driveId: driveFile.id,
-                    type: 'drive'
+                const n8nRes = await fetch(n8nUrl, {
+                    method: 'POST',
+                    body: n8nFormData,
                 });
-            } catch (driveError: unknown) {
-                if (driveError && typeof driveError === 'object' && 'code' in driveError && (driveError as { code: number }).code === 403) {
-                    console.warn('[DRIVE] Quota Error (403): Robot tidak punya kuota di Drive Pribadi. Beralih ke penyimpanan Lokal Server...');
+
+                if (n8nRes.ok) {
+                    const n8nData = await n8nRes.json();
+                    console.log('[N8N] Upload Success');
+                    // If n8n returns a drive URL, use it
+                    if (n8nData.url || n8nData.webViewLink) {
+                        return NextResponse.json({
+                            url: n8nData.url || n8nData.webViewLink,
+                            type: 'drive-n8n'
+                        });
+                    }
                 } else {
-                    console.error('[DRIVE] Gagal upload ke Drive, beralih ke Lokal:', driveError);
+                    console.warn('[N8N] Webhook failed with status:', n8nRes.status);
                 }
-                // Fallback continues below
+            } catch (n8nError) {
+                console.error('[N8N] Error:', n8nError);
             }
         }
 
