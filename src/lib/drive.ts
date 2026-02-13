@@ -41,4 +41,35 @@ export const GoogleDriveService = {
             throw error;
         }
     },
+
+    async getOrCreateSubfolder(parentId: string, folderName: string) {
+        try {
+            // Check if folder exists
+            const q = `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and '${parentId}' in parents and trashed=false`;
+            const listRes = await drive.files.list({
+                q,
+                fields: 'files(id, name)',
+                spaces: 'drive',
+            });
+
+            if (listRes.data.files && listRes.data.files.length > 0) {
+                return listRes.data.files[0].id;
+            }
+
+            // Create if not exists
+            const createRes = await drive.files.create({
+                requestBody: {
+                    name: folderName,
+                    mimeType: 'application/vnd.google-apps.folder',
+                    parents: [parentId],
+                },
+                fields: 'id',
+            });
+
+            return createRes.data.id;
+        } catch (error) {
+            console.error('Error getting/creating subfolder:', error);
+            throw error;
+        }
+    }
 };
