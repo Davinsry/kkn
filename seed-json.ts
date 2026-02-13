@@ -44,7 +44,7 @@ const schedules = [
     { kegiatan: 'Penayangan Film Anak Islami', tanggal: '2026-02-21', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Ristia') },
     { kegiatan: 'Penayangan Film Anak Islami', tanggal: '2026-02-28', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Ristia') },
     ...generateRange('Kajian Ba\'da Subuh', '2026-02-12', '2026-03-12', '05:00', '06:00', getPJ('Ika')),
-    ...generateRange('Tadarus Ba\'da Tarawih', '2026-03-17', '2026-03-22', '21:00', '22:00', getPJ('Davin')),
+    ...generateRange('Tadarus Ba\'da Tarawih', '2026-03-12', '2026-03-17', '21:00', '22:00', getPJ('Davin')),
     ...generateRange('Mengajar TPA', '2026-02-12', '2026-03-08', '16:00', '17:00', getPJ('Tyas'), [4, 5, 6]),
     { kegiatan: 'Pelatihan Khatib Jumat', tanggal: '2026-03-05', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Agung') },
     { kegiatan: 'Pelatihan Khatib Jumat', tanggal: '2026-03-10', jam_mulai: '07:00', jam_selesai: '08:00', pj: getPJ('Agung') },
@@ -54,7 +54,6 @@ const schedules = [
     { kegiatan: 'Kunjungan UMKM', tanggal: '2026-02-15', jam_mulai: '07:00', jam_selesai: '10:00', pj: getPJ('Apip') },
     { kegiatan: 'Pengajian Aisyiyah', tanggal: '2026-02-14', jam_mulai: '08:30', jam_selesai: '12:00', pj: getPJ('All') },
     { kegiatan: 'Pesantren Kilat', tanggal: '2026-03-05', jam_mulai: '18:00', jam_selesai: '19:00', pj: getPJ('Agung') },
-    ...generateRange('Kultum Ba\'da Isya', '2026-02-12', '2026-03-12', '19:30', '20:00', 'Belum Ditentukan (Takmir)'),
 ];
 
 console.log('Seeding JSON DB...');

@@ -44,12 +44,14 @@ export default function ScheduleForm({
         jam_mulai: string;
         jam_selesai: string;
         pj: string;
+        pengisi: string;
     }>({
         kegiatan: '',
         tanggals: [],
         jam_mulai: '',
         jam_selesai: '',
         pj: '',
+        pengisi: '',
     });
 
     useEffect(() => {
@@ -60,6 +62,7 @@ export default function ScheduleForm({
                 jam_mulai: editingSchedule.jam_mulai,
                 jam_selesai: editingSchedule.jam_selesai,
                 pj: editingSchedule.pj,
+                pengisi: editingSchedule.pengisi || '',
             });
         } else {
             setFormData({
@@ -68,6 +71,7 @@ export default function ScheduleForm({
                 jam_mulai: '',
                 jam_selesai: '',
                 pj: '',
+                pengisi: '',
             });
         }
     }, [editingSchedule, open]);
@@ -221,6 +225,22 @@ export default function ScheduleForm({
                                     <option key={name} value={name}>{name}</option>
                                 ))}
                             </select>
+                        </div>
+
+                        {/* Pengisi Acara (Optional) */}
+                        <div>
+                            <label className="mb-1.5 block text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                Pengisi Acara (Opsional)
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.pengisi}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, pengisi: e.target.value })
+                                }
+                                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-900 placeholder-slate-400 outline-none transition-all focus:border-slate-900 focus:bg-white focus:ring-4 focus:ring-slate-900/5 sm:py-3"
+                                placeholder="Contoh: Ustadz ... / Takmir"
+                            />
                         </div>
 
                         {/* Buttons */}

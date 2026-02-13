@@ -7,6 +7,7 @@ export interface Schedule {
   jam_mulai: string; // HH:mm
   jam_selesai: string; // HH:mm
   pj: string;
+  pengisi?: string;
   created_at: string;
   updated_at: string;
 }
@@ -17,4 +18,5 @@ export interface ScheduleFormData {
   jam_mulai: string;
   jam_selesai: string;
   pj: string;
+  pengisi?: string;
 }

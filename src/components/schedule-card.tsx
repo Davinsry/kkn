@@ -32,6 +32,12 @@ export default function ScheduleCard({
                             <User className="h-3.5 w-3.5" />
                             <span>{schedule.pj}</span>
                         </div>
+                        {schedule.pengisi && (
+                            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                                <span className="text-[10px] uppercase opacity-60">Pengisi:</span>
+                                <span>{schedule.pengisi}</span>
+                            </div>
+                        )}
                     </div>
                 </div>
 
