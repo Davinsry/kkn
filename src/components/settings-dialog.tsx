@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import { X, Wifi, WifiOff, Send } from 'lucide-react';
+import QRCode from 'qrcode';
 import Image from 'next/image';
 
 interface SettingsDialogProps {
