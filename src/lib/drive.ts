@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
 import path from 'path';
-import { PassThrough } from 'stream';
+import { Readable } from 'stream';
 
 // Load credentials from environment variable or default location
 const KEY_FILE_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS
@@ -20,8 +20,7 @@ export const GoogleDriveService = {
     async uploadFile(file: File, folderId: string) {
         try {
             const buffer = Buffer.from(await file.arrayBuffer());
-            const bufferStream = new PassThrough();
-            bufferStream.end(buffer);
+            const stream = Readable.from(buffer);
 
             const response = await drive.files.create({
                 requestBody: {
