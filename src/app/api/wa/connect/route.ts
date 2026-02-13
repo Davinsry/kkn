@@ -6,7 +6,7 @@ export async function GET() {
         await WA.init();
         const status = await WA.getStatus();
         return NextResponse.json(status);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to connect' }, { status: 500 });
     }
 }

@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { X, QrCode, Wifi, WifiOff, Send, Loader2 } from 'lucide-react';
-import QRCode from 'qrcode';
+import Image from 'next/image';
 
 interface SettingsDialogProps {
     open: boolean;
@@ -113,8 +112,8 @@ export default function SettingsDialog({ open, onOpenChange }: SettingsDialogPro
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-sm font-bold text-slate-500">Status WhatsApp</span>
                                 <span className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${status === 'open'
-                                        ? 'bg-emerald-100 text-emerald-700'
-                                        : 'bg-slate-200 text-slate-600'
+                                    ? 'bg-emerald-100 text-emerald-700'
+                                    : 'bg-slate-200 text-slate-600'
                                     }`}>
                                     {status === 'open' ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
                                     {status === 'open' ? 'TERHUBUNG' : 'DISCONNECTED'}
@@ -125,7 +124,7 @@ export default function SettingsDialog({ open, onOpenChange }: SettingsDialogPro
                                 <div className="mt-4 flex flex-col items-center gap-4">
                                     {qrDataUrl ? (
                                         <div className="bg-white p-2 rounded-lg border border-slate-200">
-                                            <img src={qrDataUrl} alt="QR Code" className="h-48 w-48 object-contain" />
+                                            <Image src={qrDataUrl} alt="QR Code" width={192} height={192} className="object-contain" />
                                         </div>
                                     ) : (
                                         <p className="text-center text-xs text-slate-400 py-4">

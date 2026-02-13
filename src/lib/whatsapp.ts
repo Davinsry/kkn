@@ -1,8 +1,7 @@
 import {
     makeWASocket,
     DisconnectReason,
-    useMultiFileAuthState,
-    AuthenticationState,
+    useMultiFileAuthState as useBaileysAuthState,
     WASocket,
     ConnectionState
 } from '@whiskeysockets/baileys';
@@ -21,12 +20,12 @@ const AUTH_FOLDER = path.join(process.cwd(), 'auth_info_baileys');
 export async function connectToWhatsApp() {
     if (sock) return sock;
 
-    const { state, saveCreds } = await useMultiFileAuthState(AUTH_FOLDER);
+    const { state, saveCreds } = await useBaileysAuthState(AUTH_FOLDER);
 
     sock = makeWASocket({
         auth: state,
         printQRInTerminal: true, // Log QR to terminal for server view
-        logger: pino({ level: 'silent' }) as any,
+        logger: pino({ level: 'silent' }) as unknown as any,
     });
 
     sock.ev.on('creds.update', saveCreds);

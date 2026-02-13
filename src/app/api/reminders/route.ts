@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
         await WA.sendMessage(targetId, message);
         return NextResponse.json({ success: true, message });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to send reminder' }, { status: 500 });
     }
 }
