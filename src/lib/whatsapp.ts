@@ -1,7 +1,7 @@
 import {
     makeWASocket,
     DisconnectReason,
-    useMultiFileAuthState as useBaileysAuthState,
+    useMultiFileAuthState as baileyAuthState,
     WASocket,
     ConnectionState
 } from '@whiskeysockets/baileys';
@@ -20,7 +20,7 @@ const AUTH_FOLDER = path.join(process.cwd(), 'auth_info_baileys');
 export async function connectToWhatsApp() {
     if (sock) return sock;
 
-    const { state, saveCreds } = await useBaileysAuthState(AUTH_FOLDER);
+    const { state, saveCreds } = await baileyAuthState(AUTH_FOLDER);
 
     sock = makeWASocket({
         auth: state,

@@ -87,7 +87,7 @@ export default function SettingsDialog({ open, onOpenChange }: SettingsDialogPro
             } else {
                 alert('Gagal: ' + (data.error || data.message));
             }
-        } catch (e) {
+        } catch {
             alert('Error sending message');
         } finally {
             setTestLoading(false);
