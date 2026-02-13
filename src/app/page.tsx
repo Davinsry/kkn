@@ -29,6 +29,7 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isTemplateOpen, setIsTemplateOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const loadSchedules = useCallback(async () => {
     const data = await ScheduleService.getAll();
@@ -270,6 +271,15 @@ export default function HomePage() {
       <TemplateManager
         open={isTemplateOpen}
         onOpenChange={setIsTemplateOpen}
+      />
+
+      <SettingsDialog
+        open={isSettingsOpen}
+        onOpenChange={setIsSettingsOpen}
+      />
+    </div>
+  );
+}
       />
     </div >
   );
