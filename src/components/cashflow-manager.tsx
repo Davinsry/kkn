@@ -41,7 +41,7 @@ export default function CashflowManager() {
 
     // Form State
     const [title, setTitle] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(''); // Store as string with dots
     const [type, setType] = useState<'income' | 'expense'>('income');
     const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [personName, setPersonName] = useState('');
@@ -91,14 +91,26 @@ export default function CashflowManager() {
         }
     };
 
+    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+        if (value === '') {
+            setAmount('');
+            return;
+        }
+        const formatted = new Intl.NumberFormat('id-ID').format(Number(value));
+        setAmount(formatted);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+            const rawAmount = Number(amount.replace(/\./g, '').replace(/,/g, '')); // Clean dots/commas
+
             await fetch('/api/cashflow', {
                 method: 'POST',
                 body: JSON.stringify({
                     title,
-                    amount: Number(amount),
+                    amount: rawAmount,
                     type,
                     date,
                     category: 'Umum',
@@ -216,10 +228,10 @@ export default function CashflowManager() {
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-slate-500">Nominal (Rp)</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     required
                                     value={amount}
-                                    onChange={e => setAmount(e.target.value)}
+                                    onChange={handleAmountChange}
                                     className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-700 focus:border-indigo-500 focus:outline-none"
                                     placeholder="0"
                                 />
