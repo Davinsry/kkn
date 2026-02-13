@@ -186,13 +186,22 @@ export default function HomePage() {
 
           {/* Right Column: Timeline/List */}
           <div className="space-y-6">
-            <div className="flex flex-col gap-1">
-              <h2 className="text-xl font-black text-slate-900 leading-tight">
-                {formattedSelectedDate}
-              </h2>
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400">
-                {daySchedules.length} KEGIATAN TERJADWAL
-              </p>
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-1">
+                <h2 className="text-xl font-black text-slate-900 leading-tight">
+                  {formattedSelectedDate}
+                </h2>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+                  {daySchedules.length} KEGIATAN TERJADWAL
+                </p>
+              </div>
+              <button
+                onClick={openCreate}
+                className="flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-slate-900/10 transition-all hover:bg-slate-800 active:scale-95"
+              >
+                <Plus className="h-4 w-4" />
+                <span className="hidden sm:inline">TAMBAH JADWAL</span>
+              </button>
             </div>
 
             {daySchedules.length === 0 ? (
@@ -261,6 +270,6 @@ export default function HomePage() {
         open={isTemplateOpen}
         onOpenChange={setIsTemplateOpen}
       />
-    </div>
+    </div >
   );
 }
