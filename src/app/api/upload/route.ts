@@ -39,7 +39,9 @@ export async function POST(req: NextRequest) {
 
         if (enableN8n && n8nUrl) {
             try {
-                console.log('[N8N] Uploading to Webhook...', file.name);
+                console.log('[N8N] Pushing to:', n8nUrl);
+                console.log('[N8N] File:', file.name, 'Size:', file.size);
+
                 const n8nFormData = new FormData();
                 n8nFormData.append('data', file);
                 n8nFormData.append('filename', file.name);
@@ -51,21 +53,28 @@ export async function POST(req: NextRequest) {
                     body: n8nFormData,
                 });
 
+                const responseText = await n8nRes.text();
+                console.log('[N8N] Response Status:', n8nRes.status);
+                console.log('[N8N] Response Body:', responseText);
+
                 if (n8nRes.ok) {
-                    const n8nData = await n8nRes.json();
-                    console.log('[N8N] Upload Success');
-                    // If n8n returns a drive URL, use it
-                    if (n8nData.url || n8nData.webViewLink) {
-                        return NextResponse.json({
-                            url: n8nData.url || n8nData.webViewLink,
-                            type: 'drive-n8n'
-                        });
+                    try {
+                        const n8nData = JSON.parse(responseText);
+                        console.log('[N8N] Success Parse JSON');
+                        if (n8nData.url || n8nData.webViewLink) {
+                            return NextResponse.json({
+                                url: n8nData.url || n8nData.webViewLink,
+                                type: 'drive-n8n'
+                            });
+                        }
+                    } catch {
+                        console.warn('[N8N] Response not JSON, but status OK');
                     }
                 } else {
                     console.warn('[N8N] Webhook failed with status:', n8nRes.status);
                 }
             } catch (n8nError) {
-                console.error('[N8N] Error:', n8nError);
+                console.error('[N8N] Error during fetch to n8n:', n8nError);
             }
         }
 
