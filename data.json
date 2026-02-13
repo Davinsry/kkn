@@ -1,0 +1,1042 @@
+[
+  {
+    "kegiatan": "Revitalisasi Ruang Masjid",
+    "tanggal": "2026-03-01",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Aqbil Fauzan",
+    "id": "j85qkxgei",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Buka Bersama",
+    "tanggal": "2026-03-09",
+    "jam_mulai": "18:00",
+    "jam_selesai": "19:00",
+    "pj": "Nabila Alifiani",
+    "id": "a7yeu4km4",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Penayangan Film Anak Islami",
+    "tanggal": "2026-02-21",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Ristia Afrisabella",
+    "id": "j20z8oshq",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Penayangan Film Anak Islami",
+    "tanggal": "2026-02-28",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Ristia Afrisabella",
+    "id": "8pv9s3g5i",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-12",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "62670setb",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-13",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "50f8rs36w",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-14",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "betcyy4zf",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-15",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "56gj0pycv",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-16",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "7fawkphuz",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-17",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "grww1dr8c",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-18",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "rue84tecq",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-19",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "b7sqfwzm4",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-20",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "ky2h2e5f5",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-21",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "619tkzboq",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-22",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "mba5elmzk",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-23",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "qw3jpf3tf",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-24",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "x2hyy0jhy",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-25",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "fjn8w92jd",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-26",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "k1nua6ofo",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-27",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "jr85pdkak",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-02-28",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "hi3x5afbi",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-01",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "ea5g9lh8q",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-02",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "69tucbnhs",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-03",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "pjkgr8scc",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-04",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "sghs73f2p",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-05",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "rt2d14wh4",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-06",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "xv3pea5h5",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-07",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "deoo8k98o",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-08",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "ofo2mzjqy",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-09",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "zmaozd5ec",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-10",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "w2cea1jnz",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-11",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "vnzec8mgk",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Kajian Ba'da Subuh",
+    "tanggal": "2026-03-12",
+    "jam_mulai": "05:00",
+    "jam_selesai": "06:00",
+    "pj": "Fitria Sasyabela Andartina",
+    "id": "zpzeydyne",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-17",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "a0v95rrtp",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-18",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "lsrur3nzx",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-19",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "mwepk68jw",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-20",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "zegjv67gh",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-21",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "rrlh26fre",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Tadarus Ba'da Tarawih",
+    "tanggal": "2026-03-22",
+    "jam_mulai": "21:00",
+    "jam_selesai": "22:00",
+    "pj": "Muhammad Davin Surya",
+    "id": "t5x1vtkiu",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-12",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "iwg6qq2do",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-13",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "10bnr8o7u",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-14",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "t8kftv8x4",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-19",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "4nqk642sn",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-20",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "vuhg24k2u",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-21",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "0w3f2g64g",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-26",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "19n1p5ox0",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-27",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "z8jd1sjlm",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-02-28",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "f40ipy679",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-03-05",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "6rmf1bo39",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-03-06",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "r9it1fq3s",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Mengajar TPA",
+    "tanggal": "2026-03-07",
+    "jam_mulai": "16:00",
+    "jam_selesai": "17:00",
+    "pj": "Echa Rosandar",
+    "id": "4x1k5jqsf",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Pelatihan Khatib Jumat",
+    "tanggal": "2026-03-05",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Agung Rezki",
+    "id": "4vaayzszl",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Pelatihan Khatib Jumat",
+    "tanggal": "2026-03-10",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Agung Rezki",
+    "id": "otomv11gf",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Happy Ramadan Kids",
+    "tanggal": "2026-03-07",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "PJ Bersama-sama",
+    "id": "27uzghjdn",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Happy Ramadan Kids",
+    "tanggal": "2026-03-08",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "PJ Bersama-sama",
+    "id": "lqpojkyyy",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-15",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "ho9kfgxhg",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-16",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "bq7n3mb1w",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-17",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "fixu9om2t",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-18",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "zu2vwe6bv",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-19",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "9vu6i90v5",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-20",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "sup26lwul",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.816Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-21",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "rpheplw28",
+    "created_at": "2026-02-13T03:38:58.816Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-22",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "ppgebakvy",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-23",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "bh88usr5d",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-24",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "yh0qclc2f",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-25",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "du9g8ekov",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-26",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "cisg3dshs",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-27",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "77gr9vof1",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-02-28",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "3y0hvlvvr",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-03-01",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "y3zp5vzw3",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-03-02",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "decpt3o0r",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Gerakan Sedekah Masjid",
+    "tanggal": "2026-03-03",
+    "jam_mulai": "07:00",
+    "jam_selesai": "08:00",
+    "pj": "Nabilah El Khaira",
+    "id": "kfgbvpg3h",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kunjungan UMKM",
+    "tanggal": "2026-02-15",
+    "jam_mulai": "07:00",
+    "jam_selesai": "10:00",
+    "pj": "Achmad Baiquni Afif Thaaha",
+    "id": "3jm63vpov",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Pengajian Aisyiyah",
+    "tanggal": "2026-02-14",
+    "jam_mulai": "08:30",
+    "jam_selesai": "12:00",
+    "pj": "PJ Bersama-sama",
+    "id": "piqhl8ho3",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Pesantren Kilat",
+    "tanggal": "2026-03-05",
+    "jam_mulai": "18:00",
+    "jam_selesai": "19:00",
+    "pj": "Agung Rezki",
+    "id": "7ylsge563",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-12",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "bufr3tjbr",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-13",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "d4ut84l0v",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-14",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "y864oz632",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-15",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "il3ho5l3u",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-16",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "vdw8xkdaw",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-17",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "bho32vuek",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-18",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "7clpx9njh",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-19",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "54tdsvov7",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-20",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "8h9m937wa",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-21",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "wewdw0huk",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-22",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "s67cazd8y",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-23",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "wx0nj09tg",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-24",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "2h3n2yiko",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-25",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "fjrnjmz5g",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-26",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "cb0llntjd",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-27",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "3dcbltiwl",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-02-28",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "4jcz2akfg",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-01",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "vxoavmxoi",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-02",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "7b4fswfyi",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-03",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "r4x4ek2ly",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-04",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "pndikti4k",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-05",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "d2pr3a34o",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-06",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "8gfeyj0ne",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-07",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "jvqveuscd",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-08",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "tti8nk0xe",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-09",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "b42h0c0b1",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-10",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "tgr8zvshi",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-11",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "0jbj5wlbz",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  },
+  {
+    "kegiatan": "Kultum Ba'da Isya",
+    "tanggal": "2026-03-12",
+    "jam_mulai": "19:30",
+    "jam_selesai": "20:00",
+    "pj": "Belum Ditentukan (Takmir)",
+    "id": "oi56ya4ed",
+    "created_at": "2026-02-13T03:38:58.817Z",
+    "updated_at": "2026-02-13T03:38:58.817Z"
+  }
+]

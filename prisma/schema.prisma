@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:dapak@localhost:3308/v1_kkn"
+}
+
+model Schedule {
+  id          String   @id @default(cuid())
+  kegiatan    String
+  tanggal     String
+  jam_mulai   String
+  jam_selesai String
+  pj          String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("schedules")
+}
