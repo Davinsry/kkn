@@ -46,6 +46,7 @@ export default function CashflowManager() {
     const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [personName, setPersonName] = useState('');
     const [proofImage, setProofImage] = useState<string | undefined>(undefined);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
 
     // View State
@@ -67,31 +68,10 @@ export default function CashflowManager() {
         fetchTransactions();
     }, [fetchTransactions]);
 
-    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (!file) return;
-
-        setUploading(true);
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('type', type);
-        formData.append('title', title);
-        formData.append('personName', personName);
-        formData.append('date', date);
-
-        try {
-            const res = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData
-            });
-            const data = await res.json();
-            if (data.url) {
-                setProofImage(data.url);
-            }
-        } catch {
-            alert('Gagal upload gambar');
-        } finally {
-            setUploading(false);
+        if (file) {
+            setSelectedFile(file);
         }
     };
 
@@ -107,7 +87,30 @@ export default function CashflowManager() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setUploading(true);
         try {
+            let currentProofImage = proofImage;
+
+            // 1. Upload File IF Selected
+            if (selectedFile) {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+                formData.append('type', type);
+                formData.append('title', title);
+                formData.append('personName', personName);
+                formData.append('date', date);
+
+                const uploadRes = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const uploadData = await uploadRes.json();
+                if (uploadData.url) {
+                    currentProofImage = uploadData.url;
+                }
+            }
+
+            // 2. Save Transaction
             const rawAmount = Number(amount.replace(/\./g, '').replace(/,/g, '')); // Clean dots/commas
 
             await fetch('/api/cashflow', {
@@ -119,7 +122,7 @@ export default function CashflowManager() {
                     date,
                     category: 'Umum',
                     person_name: personName,
-                    proof_image: proofImage
+                    proof_image: currentProofImage
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -129,10 +132,14 @@ export default function CashflowManager() {
             setAmount('');
             setPersonName('');
             setProofImage(undefined);
+            setSelectedFile(null);
             setIsFormOpen(false);
             fetchTransactions();
-        } catch {
-            alert('Gagal menyimpan');
+        } catch (err) {
+            console.error(err);
+            alert('Gagal menyimpan data');
+        } finally {
+            setUploading(false);
         }
     };
 
@@ -259,11 +266,11 @@ export default function CashflowManager() {
                                     <input
                                         type="file"
                                         accept="image/*"
-                                        onChange={handleFileUpload}
+                                        onChange={handleFileChange}
                                         className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 file:mr-4 file:rounded-full file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-indigo-700 hover:file:bg-indigo-100"
                                     />
-                                    {uploading && <span className="absolute right-4 top-3 text-xs font-bold text-indigo-500">Uploading...</span>}
-                                    {proofImage && <span className="absolute right-4 top-3 text-xs font-bold text-emerald-500">Terupload ✓</span>}
+                                    {uploading && <span className="absolute right-4 top-3 text-xs font-bold text-indigo-500 animate-pulse">Memproses...</span>}
+                                    {selectedFile && !uploading && <span className="absolute right-4 top-3 text-xs font-bold text-emerald-500">Siap Kirim ✓</span>}
                                 </div>
                             </div>
                             <div className="space-y-1">
