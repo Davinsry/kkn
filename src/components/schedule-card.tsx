@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, User, Pencil, Trash2, Edit } from 'lucide-react';
+import { Clock, User, Pencil, Trash2, Edit, Mic } from 'lucide-react';
 import { Schedule } from '@/lib/types';
 
 interface ScheduleCardProps {
@@ -28,16 +28,20 @@ export default function ScheduleCard({
                                 {schedule.jam_mulai} - {schedule.jam_selesai}
                             </span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                            <User className="h-3.5 w-3.5" />
-                            <span>{schedule.pj}</span>
+                    </div>
+                    <div className="flex flex-col gap-1 mt-2">
+                        <div className="flex items-center gap-1.5 text-xs">
+                            <User className="h-3.5 w-3.5 text-slate-400" />
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">PJ:</span>
+                            <span className="font-bold text-slate-600">{schedule.pj}</span>
                         </div>
-                        {schedule.pengisi && (
-                            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
-                                <span className="text-[10px] uppercase opacity-60">Pengisi:</span>
-                                <span>{schedule.pengisi}</span>
-                            </div>
-                        )}
+                        <div className="flex items-center gap-1.5 text-xs">
+                            <Mic className="h-3.5 w-3.5 text-emerald-500" />
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Pengisi:</span>
+                            <span className={`font-bold ${schedule.pengisi ? 'text-emerald-600' : 'text-slate-300 italic'}`}>
+                                {schedule.pengisi || 'Belum ditentukan'}
+                            </span>
+                        </div>
                     </div>
                 </div>
 
