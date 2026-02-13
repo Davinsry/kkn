@@ -29,7 +29,7 @@ export const GoogleDriveService = {
                 },
                 media: {
                     mimeType: file.type,
-                    body: bufferStream,
+                    body: stream,
                 },
                 fields: 'id, name, webViewLink, webContentLink',
             });
