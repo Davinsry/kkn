@@ -60,10 +60,11 @@ export async function POST(req: NextRequest) {
         console.log('- Enabled (Env):', enableN8n);
 
         if (enableN8n && n8nUrl) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
             try {
                 console.log('[N8N] Pushing to:', n8nUrl);
-                console.log('[N8N] Custom Name:', finalFilename);
-
                 const targetFolderId = type === 'income' ? incomeFolderId : outcomeFolderId;
 
                 const n8nFormData = new FormData();
@@ -78,10 +79,11 @@ export async function POST(req: NextRequest) {
                 const n8nRes = await fetch(n8nUrl, {
                     method: 'POST',
                     body: n8nFormData,
+                    signal: controller.signal,
                 });
 
+                clearTimeout(timeoutId);
                 const responseText = await n8nRes.text();
-                console.log('[N8N] Response Status:', n8nRes.status);
 
                 if (n8nRes.ok) {
                     try {
@@ -97,10 +99,16 @@ export async function POST(req: NextRequest) {
                         console.warn('[N8N] Response not JSON, but status OK');
                     }
                 } else {
-                    console.warn('[N8N] Webhook failed with status:', n8nRes.status);
+                    console.warn('[N8N] Webhook failed with status:', n8nRes.status, responseText);
                 }
-            } catch (n8nError) {
-                console.error('[N8N] Error during fetch to n8n:', n8nError);
+            } catch (n8nError: any) {
+                clearTimeout(timeoutId);
+                if (n8nError.name === 'AbortError') {
+                    console.error('[N8N] Error: Request timed out after 15s');
+                } else {
+                    console.error('[N8N] Error during fetch to n8n:', n8nError);
+                }
+                // Continue to local fallback
             }
         }
 

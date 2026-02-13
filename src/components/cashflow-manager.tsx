@@ -135,6 +135,18 @@ export default function CashflowManager() {
                     method: 'POST',
                     body: formData
                 });
+
+                if (!uploadRes.ok) {
+                    let errorMessage = 'Gagal upload bukti';
+                    try {
+                        const errorData = await uploadRes.json();
+                        errorMessage = errorData.error || errorMessage;
+                    } catch {
+                        errorMessage = `Upload Error ${uploadRes.status}: ${uploadRes.statusText}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+
                 const uploadData = await uploadRes.json();
                 if (uploadData.url) {
                     currentProofImage = uploadData.url;
@@ -142,21 +154,30 @@ export default function CashflowManager() {
             }
 
             // 2. Save Transaction
-            const rawAmount = Number(amount.replace(/\./g, '').replace(/,/g, '')); // Clean dots/commas
+            const processedAmount = amount.replace(/\./g, '').replace(/,/g, '');
+            const rawAmount = Number(processedAmount);
 
-            await fetch('/api/cashflow', {
+            if (isNaN(rawAmount) || rawAmount <= 0) {
+                throw new Error('Nominal tidak valid');
+            }
+
+            const cfRes = await fetch('/api/cashflow', {
                 method: 'POST',
                 body: JSON.stringify({
-                    title,
+                    title: title || 'Tanpa Judul',
                     amount: rawAmount,
                     type,
                     date,
                     category: 'Umum',
-                    person_name: personName,
+                    person_name: personName || 'Anonim',
                     proof_image: currentProofImage
                 }),
                 headers: { 'Content-Type': 'application/json' }
             });
+
+            if (!cfRes.ok) {
+                throw new Error('Gagal simpan transaksi');
+            }
 
             // Reset form
             setTitle('');
