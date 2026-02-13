@@ -9,9 +9,18 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData();
         const file = formData.get('file') as File;
         const type = formData.get('type') as string; // 'income' or 'expense'
-        const title = formData.get('title') as string || 'Tanpa-Judul';
-        const personName = formData.get('personName') as string || 'Anonim';
+        const title = formData.get('title') as string;
+        const personName = formData.get('personName') as string;
         const rawDate = formData.get('date') as string; // yyyy-MM-dd
+
+        console.log('[DEBUG] Upload Incoming:');
+        console.log('- Raw Title:', title);
+        console.log('- Raw Person:', personName);
+        console.log('- Raw Date:', rawDate);
+        console.log('- File Name:', file?.name);
+
+        const safeTitle = title && title.trim() !== '' ? title : 'Tanpa-Judul';
+        const safePerson = personName && personName.trim() !== '' ? personName : 'Anonim';
 
         if (!file) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -27,7 +36,7 @@ export async function POST(req: NextRequest) {
         }
 
         // Custom Filename: Judul Setor dd-mm-yyyy
-        const customFilename = `${title} ${personName} ${formattedDate}`.replace(/[/\\?%*:|"<>]/g, '-');
+        const customFilename = `${safeTitle} ${safePerson} ${formattedDate}`.replace(/[/\\?%*:|"<>]/g, '-');
         const extension = path.extname(file.name);
         const finalFilename = `${customFilename}${extension}`;
 
@@ -62,8 +71,8 @@ export async function POST(req: NextRequest) {
                 n8nFormData.append('filename', finalFilename);
                 n8nFormData.append('type', type || 'general');
                 n8nFormData.append('folderId', targetFolderId || '');
-                n8nFormData.append('title', title);
-                n8nFormData.append('personName', personName);
+                n8nFormData.append('title', safeTitle);
+                n8nFormData.append('personName', safePerson);
                 n8nFormData.append('date', formattedDate.replace(/-/g, '/'));
 
                 const n8nRes = await fetch(n8nUrl, {
