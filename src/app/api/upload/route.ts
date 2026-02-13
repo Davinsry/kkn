@@ -20,14 +20,16 @@ export async function POST(req: NextRequest) {
         const credPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || '';
         const absoluteCredPath = path.resolve(process.cwd(), credPath);
         const hasCredentials = credPath && fs.existsSync(absoluteCredPath);
+        const isEnabled = process.env.ENABLE_GOOGLE_DRIVE === 'true';
 
         console.log('[DEBUG] Drive Config Check:');
         console.log('- Folder ID:', folderId ? 'Set' : 'Missing');
         console.log('- Cred Path (Env):', credPath);
         console.log('- Absolute Path:', absoluteCredPath);
         console.log('- File Exists:', hasCredentials);
+        console.log('- Enabled (Env):', isEnabled);
 
-        if (folderId && hasCredentials) {
+        if (folderId && hasCredentials && isEnabled) {
             // Upload to Google Drive
             try {
                 // Determine Subfolder
