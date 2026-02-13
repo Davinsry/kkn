@@ -1,22 +1,13 @@
 [
   {
-    "title": "AA",
-    "amount": 20000,
-    "type": "income",
-    "date": "2026-02-13",
-    "category": "Umum",
-    "id": "212c2e23-3fc7-44e3-b18a-ad565fb01e21",
-    "created_at": "2026-02-13T06:47:38.901Z"
-  },
-  {
     "title": "pemasukan",
     "amount": 20000,
     "type": "income",
     "date": "2026-02-13",
     "category": "Umum",
-    "person_name": "dapin",
-    "proof_image": "/uploads/1770969101186-WhatsApp-Image-2026-02-12-at-22.18.34.jpeg",
-    "id": "30f3aeee-dd21-4e68-9c38-f378996c1181",
-    "created_at": "2026-02-13T07:51:56.427Z"
+    "person_name": "Dapin",
+    "proof_image": "/uploads/1770971829497-WhatsApp-Image-2026-02-12-at-22.18.34.jpeg",
+    "id": "e8e84e28-f3e1-4f19-9acf-813c3f48be2e",
+    "created_at": "2026-02-13T08:37:12.040Z"
   }
 ]
