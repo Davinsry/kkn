@@ -47,11 +47,12 @@ export async function POST(req: NextRequest) {
                     type: 'drive'
                 });
             } catch (driveError: unknown) {
-                const error = driveError as any;
-                if (error.code === 403) {
+                if (driveError && typeof driveError === 'object' && 'code' in driveError && (driveError as { code: number }).code === 403) {
                     console.warn('[DRIVE] Quota Error: Service Account needs a Shared Drive. Switching to Local Storage...');
+                } else if (driveError instanceof Error) {
+                    console.error('[DRIVE] Upload failed, falling back to local:', driveError.message);
                 } else {
-                    console.error('[DRIVE] Upload failed, falling back to local:', driveError.message || driveError);
+                    console.error('[DRIVE] Upload failed, falling back to local:', driveError);
                 }
                 // Fallback continues below
             }
