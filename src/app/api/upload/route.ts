@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
     try {
         const formData = await req.formData();
         const file = formData.get('file') as File;
+        const type = formData.get('type') as string; // 'income' or 'expense'
 
         if (!file) {
             return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -21,12 +22,18 @@ export async function POST(req: NextRequest) {
         if (folderId && hasCredentials) {
             // Upload to Google Drive
             try {
-                console.log('Uploading to Google Drive...', file.name);
-                const driveFile = await GoogleDriveService.uploadFile(file, folderId);
+                // Determine Subfolder
+                let targetFolderId = folderId;
+                if (type) {
+                    const subfolderName = type === 'income' ? 'Cashflow - Pembayaran' : 'Cashflow - Pengeluaran';
+                    const subId = await GoogleDriveService.getOrCreateSubfolder(folderId, subfolderName);
+                    if (subId) targetFolderId = subId;
+                }
+
+                console.log(`Uploading to Google Drive (${type || 'root'})...`, file.name);
+                const driveFile = await GoogleDriveService.uploadFile(file, targetFolderId);
 
                 // Use webContentLink (download) or webViewLink (view)
-                // For <img> tags, we might need a proxy or public link. 
-                // webContentLink works if file is public, but let's return webViewLink for now as "proof link"
                 return NextResponse.json({
                     url: driveFile.webViewLink,
                     driveId: driveFile.id,
