@@ -101,9 +101,10 @@ export async function POST(req: NextRequest) {
                 } else {
                     console.warn('[N8N] Webhook failed with status:', n8nRes.status, responseText);
                 }
-            } catch (n8nError: any) {
+            } catch (n8nError: unknown) {
                 clearTimeout(timeoutId);
-                if (n8nError.name === 'AbortError') {
+                const errorName = (n8nError as any)?.name;
+                if (errorName === 'AbortError') {
                     console.error('[N8N] Error: Request timed out after 15s');
                 } else {
                     console.error('[N8N] Error during fetch to n8n:', n8nError);
