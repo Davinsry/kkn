@@ -103,8 +103,7 @@ export async function POST(req: NextRequest) {
                 }
             } catch (n8nError: unknown) {
                 clearTimeout(timeoutId);
-                const errorName = (n8nError as any)?.name;
-                if (errorName === 'AbortError') {
+                if (n8nError instanceof Error && n8nError.name === 'AbortError') {
                     console.error('[N8N] Error: Request timed out after 15s');
                 } else {
                     console.error('[N8N] Error during fetch to n8n:', n8nError);
