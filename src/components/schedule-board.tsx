@@ -31,7 +31,6 @@ const PERSON_CONFIG: Record<string, { color: string; border: string; text: strin
 
 export default function ScheduleBoard() {
     const [items, setItems] = useState<WeeklyItem[]>([]);
-    const [loading, setLoading] = useState(true);
     const [isImporting, setIsImporting] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
@@ -50,7 +49,7 @@ export default function ScheduleBoard() {
         } catch (error) {
             console.error('Failed to fetch weekly schedule', error);
         } finally {
-            setLoading(false);
+            // Loading handled implicitly by initial state or not needed for this UI
         }
     }, []);
 
@@ -70,7 +69,7 @@ export default function ScheduleBoard() {
                 alert('Impor Berhasil!');
                 fetchWeekly();
             }
-        } catch (error) {
+        } catch (_error) {
             alert('Gagal impor');
         } finally {
             setIsImporting(false);
@@ -120,7 +119,12 @@ export default function ScheduleBoard() {
     const TIME_LABELS = ['07:00', '08:40', '10:20', '12:00', '13:40', '15:20', '17:00', '18:40', '20:20'];
 
     const consolidatedByDay = useMemo(() => {
-        const result: Record<string, any[]> = {};
+        const result: Record<string, {
+            timeRange: string;
+            subject: string;
+            room: string;
+            people: { name: string; id: string }[];
+        }[]> = {};
 
         DAYS.forEach(day => {
             const dayItems = items.filter(i => i.day === day);
@@ -145,10 +149,15 @@ export default function ScheduleBoard() {
                 commonGroups[key].people.push({ name: item.person, id: item.id });
             });
 
-            let consolidatedList = Object.values(commonGroups).sort((a, b) => a.timeRange.localeCompare(b.timeRange));
+            const consolidatedList = Object.values(commonGroups).sort((a, b) => a.timeRange.localeCompare(b.timeRange));
 
             // Merge Contiguous
-            const mergedList: any[] = [];
+            const mergedList: {
+                timeRange: string;
+                subject: string;
+                room: string;
+                people: { name: string; id: string }[];
+            }[] = [];
             consolidatedList.forEach((item, index) => {
                 if (index === 0) {
                     mergedList.push({ ...item });
@@ -156,11 +165,11 @@ export default function ScheduleBoard() {
                 }
 
                 const prev = mergedList[mergedList.length - 1];
-                const prevPeopleStr = prev.people.map((p: any) => p.name).sort().join(',');
-                const currPeopleStr = item.people.map((p: any) => p.name).sort().join(',');
+                const prevPeopleStr = prev.people.map(p => p.name).sort().join(',');
+                const currPeopleStr = item.people.map(p => p.name).sort().join(',');
 
-                const [pStart, pEnd] = prev.timeRange.split(' - ');
-                const [cStart, cEnd] = item.timeRange.split(' - ');
+                const [pStart] = prev.timeRange.split(' - ');
+                const [, cEnd] = item.timeRange.split(' - ');
 
                 const isSameActivity = prev.subject === item.subject && prev.room === item.room && prevPeopleStr === currPeopleStr;
 
@@ -239,7 +248,7 @@ export default function ScheduleBoard() {
                                     // Calculate vertical position based on startTime
                                     // Base 07:00 = 0px
                                     // 100 minutes = ~120px height for visuals
-                                    const [start, end] = item.timeRange.split(' - ');
+                                    const [start] = item.timeRange.split(' - ');
                                     const [sh, sm] = start.split(':').map(Number);
                                     const minutesSinceStart = (sh - 7) * 60 + sm;
                                     const topPos = (minutesSinceStart / 100) * 112; // Adjusted for gap
@@ -251,7 +260,7 @@ export default function ScheduleBoard() {
                                             className={`absolute left-1 right-1 rounded-2xl border border-slate-200 bg-white p-3 transition-all hover:z-10 hover:shadow-xl hover:-translate-y-1 shadow-sm group`}
                                         >
                                             <div className="flex flex-wrap gap-1 mb-2">
-                                                {item.people.map((p: any) => (
+                                                {item.people.map(p => (
                                                     <div key={p.id} className={`rounded-lg px-2 py-0.5 text-[8px] font-black text-white shadow-sm transition-transform group-hover:scale-110 ${PERSON_CONFIG[p.name]?.color || 'bg-slate-500'}`}>
                                                         {p.name.toUpperCase()}
                                                     </div>

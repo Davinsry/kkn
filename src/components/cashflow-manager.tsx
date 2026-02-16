@@ -22,6 +22,7 @@ function ImageViewer({ src, onClose }: { src: string; onClose: () => void }) {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
             <div className="relative max-h-[90vh] max-w-full overflow-hidden rounded-lg">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={src} alt="Bukti" className="h-full w-full object-contain" />
                 <button
                     onClick={onClose}
