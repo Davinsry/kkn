@@ -282,6 +282,71 @@ export default function ScheduleBoard() {
                 </div>
             </div>
 
+            {/* Free Time Analysis (Longgar 15:00 - 21:00) */}
+            <div className="mt-8">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500 text-white shadow-lg shadow-emerald-500/20">
+                        <User className="h-4 w-4" />
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-black text-slate-900 leading-none">Siapa yang Longgar?</h3>
+                        <p className="mt-1 text-[9px] font-bold text-slate-400 uppercase tracking-wider italic">
+                            Otomatis terhitung (Jam 15:00 - 21:00)
+                        </p>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-7">
+                    {DAYS.map(day => {
+                        // Logic: For each student in PERSON_CONFIG, check if they have ANY schedule between 15:00 and 21:00 on this day
+                        const dayItems = items.filter(i => i.day === day);
+                        const allPeople = Object.keys(PERSON_CONFIG).filter(p => p !== 'Lainnya');
+
+                        const freePeople = allPeople.filter(person => {
+                            const personDayItems = dayItems.filter(i => i.person === person);
+
+                            // Check for overlap with 15:00 - 21:00
+                            const targetStart = 15 * 60; // 15:00 in minutes
+                            const targetEnd = 21 * 60;   // 21:00 in minutes
+
+                            return !personDayItems.some(item => {
+                                const [startStr, endStr] = item.timeRange.split(' - ');
+                                if (!startStr || !endStr) return false;
+
+                                const [sh, sm] = startStr.split(':').map(Number);
+                                const [eh, em] = endStr.split(':').map(Number);
+                                const itemStart = sh * 60 + sm;
+                                const itemEnd = eh * 60 + em;
+
+                                // Overlap if: itemStart < targetEnd AND itemEnd > targetStart
+                                return itemStart < targetEnd && itemEnd > targetStart;
+                            });
+                        });
+
+                        return (
+                            <div key={`free-${day}`} className="rounded-2xl border border-slate-100 bg-white p-3 shadow-sm shadow-slate-200/50 hover:shadow-md transition-shadow">
+                                <div className="text-[9px] font-black text-slate-400 uppercase mb-3 text-center">{day}</div>
+                                <div className="flex flex-wrap gap-1.5 justify-center">
+                                    {freePeople.length === 0 ? (
+                                        <div className="text-[8px] font-bold text-slate-300">Semua Sibuk</div>
+                                    ) : (
+                                        freePeople.map(person => (
+                                            <div
+                                                key={person}
+                                                title={`${person} tidak ada jadwal 15:00-21:00`}
+                                                className={`rounded-lg px-2 py-1 text-[8px] font-black text-white shadow-sm ring-1 ring-white/50 ${PERSON_CONFIG[person].color}`}
+                                            >
+                                                {person.toUpperCase()}
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
             {/* Edit Modal / Person Selection */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" onClick={() => setIsEditModalOpen(false)}>
