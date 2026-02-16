@@ -83,7 +83,7 @@ export default function ScheduleBoard() {
                 alert('Impor Berhasil!');
                 fetchWeekly();
             }
-        } catch (_error) {
+        } catch {
             alert('Gagal impor');
         } finally {
             setIsImporting(false);

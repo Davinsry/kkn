@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
         const newItem = WeeklyDB.create(data);
         return NextResponse.json(newItem);
-    } catch (_error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to create' }, { status: 500 });
     }
 }

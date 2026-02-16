@@ -10,7 +10,7 @@ export async function PATCH(
         const updated = WeeklyDB.update(params.id, data);
         if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json(updated);
-    } catch (_error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to update' }, { status: 500 });
     }
 }
@@ -22,7 +22,7 @@ export async function DELETE(
     try {
         const success = WeeklyDB.delete(params.id);
         return NextResponse.json({ success });
-    } catch (_error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete' }, { status: 500 });
     }
 }
