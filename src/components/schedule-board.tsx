@@ -433,30 +433,32 @@ export default function ScheduleBoard() {
                                     <h4 className="text-sm font-black text-slate-900 tracking-tight">Jadwal: {selectedPerson}</h4>
                                 </div>
 
-                                <form onSubmit={handleAddItem} className="grid grid-cols-1 gap-3 mb-6 lg:grid-cols-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                    <select
-                                        value={formDay}
-                                        onChange={e => setFormDay(e.target.value)}
-                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
-                                    >
-                                        {DAYS.map(day => <option key={day} value={day}>{day}</option>)}
-                                    </select>
-                                    <select
-                                        value={formTime}
-                                        onChange={e => setFormTime(e.target.value)}
-                                        required
-                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
-                                    >
-                                        <option value="">Pilih Waktu</option>
-                                        {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
-                                    </select>
+                                <form onSubmit={handleAddItem} className="space-y-3 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <select
+                                            value={formDay}
+                                            onChange={e => setFormDay(e.target.value)}
+                                            className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
+                                        >
+                                            {DAYS.map(day => <option key={day} value={day}>{day}</option>)}
+                                        </select>
+                                        <select
+                                            value={formTime}
+                                            onChange={e => setFormTime(e.target.value)}
+                                            required
+                                            className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
+                                        >
+                                            <option value="">Pilih Waktu</option>
+                                            {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
+                                        </select>
+                                    </div>
                                     <input
                                         type="text"
                                         placeholder="Mata Kuliah"
                                         value={formSubject}
                                         onChange={e => setFormSubject(e.target.value)}
                                         required
-                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
+                                        className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                     />
                                     <div className="flex gap-2">
                                         <input
@@ -466,7 +468,7 @@ export default function ScheduleBoard() {
                                             onChange={e => setFormRoom(e.target.value)}
                                             className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                         />
-                                        <div className="flex gap-1">
+                                        <div className="flex gap-2">
                                             {editingId ? (
                                                 <>
                                                     <button type="button" onClick={cancelEdit} title="Batal Edit" className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-600 shadow-md hover:bg-slate-300 transition-colors">
@@ -477,15 +479,16 @@ export default function ScheduleBoard() {
                                                     </button>
                                                 </>
                                             ) : (
-                                                <button type="submit" title="Tambah Jadwal" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color} hover:brightness-110 transition-all`}>
-                                                    <Plus className="h-5 w-5" />
+                                                <button type="submit" className={`flex items-center gap-2 rounded-xl px-4 text-white shadow-md ${PERSON_CONFIG[selectedPerson].color} hover:brightness-110 transition-all`}>
+                                                    <Plus className="h-4 w-4" />
+                                                    <span className="text-[10px] font-black uppercase">Simpan</span>
                                                 </button>
                                             )}
                                         </div>
                                     </div>
                                 </form>
 
-                                <div className="flex-1 overflow-y-auto space-y-3 pr-2 pb-10 min-h-0">
+                                <div className="flex-1 overflow-y-auto space-y-3 pr-2 pb-20 min-h-0">
                                     {items.filter(i => i.person === selectedPerson).length === 0 ? (
                                         <p className="py-12 text-center text-xs font-bold text-slate-400">Belum ada jadwal tersimpan untuk {selectedPerson}</p>
                                     ) : (
