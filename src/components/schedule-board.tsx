@@ -433,7 +433,7 @@ export default function ScheduleBoard() {
                                     <h4 className="text-sm font-black text-slate-900 tracking-tight">Jadwal: {selectedPerson}</h4>
                                 </div>
 
-                                <form onSubmit={handleAddItem} className="grid grid-cols-1 gap-3 mb-6 sm:grid-cols-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                <form onSubmit={handleAddItem} className="grid grid-cols-1 gap-3 mb-6 lg:grid-cols-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
                                     <select
                                         value={formDay}
                                         onChange={e => setFormDay(e.target.value)}
@@ -447,7 +447,7 @@ export default function ScheduleBoard() {
                                         required
                                         className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                     >
-                                        <option value="">Pilih Jam</option>
+                                        <option value="">Pilih Waktu</option>
                                         {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
                                     </select>
                                     <input
@@ -469,15 +469,15 @@ export default function ScheduleBoard() {
                                         <div className="flex gap-1">
                                             {editingId ? (
                                                 <>
-                                                    <button type="button" onClick={cancelEdit} className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-600 shadow-md">
+                                                    <button type="button" onClick={cancelEdit} title="Batal Edit" className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-600 shadow-md hover:bg-slate-300 transition-colors">
                                                         <X className="h-5 w-5" />
                                                     </button>
-                                                    <button type="submit" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color}`}>
-                                                        <Plus className="h-5 w-5 rotate-45" /> {/* Save icon style */}
+                                                    <button type="submit" title="Simpan Perubahan" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color} hover:brightness-110 transition-all`}>
+                                                        <Plus className="h-5 w-5 rotate-45" />
                                                     </button>
                                                 </>
                                             ) : (
-                                                <button type="submit" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color}`}>
+                                                <button type="submit" title="Tambah Jadwal" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color} hover:brightness-110 transition-all`}>
                                                     <Plus className="h-5 w-5" />
                                                 </button>
                                             )}
@@ -485,27 +485,34 @@ export default function ScheduleBoard() {
                                     </div>
                                 </form>
 
-                                <div className="flex-1 overflow-y-auto space-y-2 pr-2">
+                                <div className="flex-1 overflow-y-auto space-y-3 pr-2 pb-10 min-h-0">
                                     {items.filter(i => i.person === selectedPerson).length === 0 ? (
-                                        <p className="py-8 text-center text-xs font-bold text-slate-400">Belum ada jadwal tersimpan untuk {selectedPerson}</p>
+                                        <p className="py-12 text-center text-xs font-bold text-slate-400">Belum ada jadwal tersimpan untuk {selectedPerson}</p>
                                     ) : (
                                         items.filter(i => i.person === selectedPerson)
                                             .sort((a, b) => DAYS.indexOf(a.day) - DAYS.indexOf(b.day) || a.timeRange.localeCompare(b.timeRange))
                                             .map(item => (
-                                                <div key={item.id} className="flex items-center justify-between rounded-2xl border border-slate-100 bg-white p-3 shadow-sm">
+                                                <div key={item.id} className="group flex items-center justify-between rounded-2xl border border-slate-100 bg-white p-4 shadow-sm hover:shadow-md transition-all">
                                                     <div className="flex-1">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <span className="text-[9px] font-black uppercase text-indigo-500">{item.day}</span>
-                                                            <span className="text-[9px] font-black text-slate-400">{item.timeRange}</span>
+                                                        <div className="flex items-center gap-2 mb-1.5">
+                                                            <div className={`h-1.5 w-1.5 rounded-full ${PERSON_CONFIG[selectedPerson].color}`} />
+                                                            <span className="text-[10px] font-black uppercase text-indigo-500">{item.day}</span>
+                                                            <div className="h-1 w-1 rounded-full bg-slate-200" />
+                                                            <span className="text-[10px] font-black text-slate-400">{item.timeRange}</span>
                                                         </div>
-                                                        <h5 className="text-xs font-black text-slate-900">{item.subject}</h5>
-                                                        <p className="text-[10px] font-bold text-slate-400">{item.room}</p>
+                                                        <h5 className="text-sm font-black text-slate-900 group-hover:text-indigo-600 transition-colors">{item.subject}</h5>
+                                                        {item.room && (
+                                                            <div className="mt-1 flex items-center gap-1.5 text-slate-400">
+                                                                <MapPin className="h-3 w-3" />
+                                                                <span className="text-[10px] font-bold uppercase">{item.room}</span>
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                    <div className="flex items-center gap-1">
-                                                        <button onClick={() => startEdit(item)} className="rounded-xl p-2 text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                                                    <div className="flex items-center gap-1 ml-4">
+                                                        <button onClick={() => startEdit(item)} className="rounded-xl p-2.5 text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
                                                             <Pencil className="h-4 w-4" />
                                                         </button>
-                                                        <button onClick={() => handleDelete(item.id)} className="rounded-xl p-2 text-slate-300 hover:bg-rose-50 hover:text-rose-500 transition-colors">
+                                                        <button onClick={() => handleDelete(item.id)} className="rounded-xl p-2.5 text-slate-300 hover:bg-rose-50 hover:text-rose-500 transition-colors">
                                                             <Trash2 className="h-4 w-4" />
                                                         </button>
                                                     </div>
