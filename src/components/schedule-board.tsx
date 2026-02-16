@@ -169,18 +169,14 @@ export default function ScheduleBoard() {
 
             const commonGroups: Record<string, {
                 timeRange: string;
-                subject: string;
-                room: string;
                 people: { name: string; id: string }[];
             }> = {};
 
             dayItems.forEach(item => {
-                const key = `${item.timeRange}-${item.subject}-${item.room}`;
+                const key = item.timeRange;
                 if (!commonGroups[key]) {
                     commonGroups[key] = {
                         timeRange: item.timeRange,
-                        subject: item.subject,
-                        room: item.room,
                         people: []
                     };
                 }
@@ -192,8 +188,6 @@ export default function ScheduleBoard() {
             // Merge Contiguous
             const mergedList: {
                 timeRange: string;
-                subject: string;
-                room: string;
                 people: { name: string; id: string }[];
             }[] = [];
             consolidatedList.forEach((item, index) => {
@@ -209,9 +203,9 @@ export default function ScheduleBoard() {
                 const [pStart] = prev.timeRange.split(' - ');
                 const [, cEnd] = item.timeRange.split(' - ');
 
-                const isSameActivity = prev.subject === item.subject && prev.room === item.room && prevPeopleStr === currPeopleStr;
+                const isSameGroup = prevPeopleStr === currPeopleStr;
 
-                if (isSameActivity) {
+                if (isSameGroup) {
                     prev.timeRange = `${pStart} - ${cEnd}`;
                 } else {
                     mergedList.push({ ...item });
@@ -305,21 +299,12 @@ export default function ScheduleBoard() {
                                                 ))}
                                             </div>
 
-                                            <div className="flex items-center justify-between mb-1.5">
+                                            <div className="flex items-center justify-between mb-1">
                                                 <div className="flex items-center gap-1.5 bg-slate-50 px-1.5 py-0.5 rounded-md">
                                                     <Clock className="h-2.5 w-2.5 text-slate-400" />
                                                     <span className="text-[9px] font-black text-slate-500">{item.timeRange}</span>
                                                 </div>
                                             </div>
-                                            <h4 className={`text-[11px] font-black leading-tight text-slate-800 group-hover:text-indigo-600 transition-colors`}>
-                                                {item.subject}
-                                            </h4>
-                                            {item.room && (
-                                                <div className="mt-2 flex items-center gap-1.5 text-slate-400">
-                                                    <MapPin className="h-3 w-3" />
-                                                    <span className="text-[9px] font-bold">{item.room}</span>
-                                                </div>
-                                            )}
                                         </div>
                                     );
                                 })}
