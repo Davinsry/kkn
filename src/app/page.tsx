@@ -18,6 +18,7 @@ import TemplateManager from '@/components/template-manager';
 import SettingsDialog from '@/components/settings-dialog';
 import CashflowManager from '@/components/cashflow-manager';
 import NotesManager from '@/components/notes-manager';
+import ScheduleBoard from '@/components/schedule-board';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { MosqueIcon } from '@/components/mosque-icon';
@@ -244,8 +245,13 @@ export default function HomePage() {
         </div>
 
         {/* Notes Section - Full Width */}
-        <div className="mt-12 border-t border-slate-200 pt-8 pb-20">
+        <div className="mt-12 border-t border-slate-200 pt-8 pb-12">
           <NotesManager />
+        </div>
+
+        {/* Weekly Schedule Board - Full Width */}
+        <div className="mt-12 border-t border-slate-200 pt-8 pb-20">
+          <ScheduleBoard />
         </div>
       </div>
 
