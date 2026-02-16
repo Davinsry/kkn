@@ -159,8 +159,6 @@ export default function ScheduleBoard() {
     const consolidatedByDay = useMemo(() => {
         const result: Record<string, {
             timeRange: string;
-            subject: string;
-            room: string;
             people: { name: string; id: string }[];
         }[]> = {};
 
