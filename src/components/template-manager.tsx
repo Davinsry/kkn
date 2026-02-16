@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { X, Plus, Pencil, Trash2, Save, ListChecks } from 'lucide-react';
+import { X, Plus, Pencil, Trash2, Save, ListChecks, Calendar as CalendarIcon } from 'lucide-react';
 import { EventTemplate } from '@/lib/types';
 
 const PJ_OPTIONS = [
@@ -23,9 +23,10 @@ const PJ_OPTIONS = [
 interface TemplateManagerProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
+    onSchedule?: (template: EventTemplate) => void;
 }
 
-export default function TemplateManager({ open, onOpenChange }: TemplateManagerProps) {
+export default function TemplateManager({ open, onOpenChange, onSchedule }: TemplateManagerProps) {
     const [templates, setTemplates] = useState<EventTemplate[]>([]);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [showAddForm, setShowAddForm] = useState(false);
@@ -198,6 +199,15 @@ export default function TemplateManager({ open, onOpenChange }: TemplateManagerP
                                         </p>
                                     </div>
                                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+                                        {onSchedule && (
+                                            <button
+                                                onClick={() => onSchedule(t)}
+                                                className="rounded-lg p-2 text-emerald-500 hover:bg-emerald-50 transition-all"
+                                                title="Jadwalkan"
+                                            >
+                                                <CalendarIcon className="h-3.5 w-3.5" />
+                                            </button>
+                                        )}
                                         <button
                                             onClick={() => handleEdit(t)}
                                             className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-all"

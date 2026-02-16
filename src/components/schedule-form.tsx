@@ -16,6 +16,7 @@ interface ScheduleFormProps {
     onOpenChange: (open: boolean) => void;
     onSubmit: (data: ScheduleFormData, applyToAll?: boolean) => void;
     editingSchedule?: Schedule | null;
+    initialTemplate?: EventTemplate | null;
 }
 
 const PJ_OPTIONS = [
@@ -38,6 +39,7 @@ export default function ScheduleForm({
     onOpenChange,
     onSubmit,
     editingSchedule,
+    initialTemplate,
 }: ScheduleFormProps) {
     const [templates, setTemplates] = useState<EventTemplate[]>([]);
     const [selectedTemplate, setSelectedTemplate] = useState<string>('');
@@ -75,6 +77,17 @@ export default function ScheduleForm({
                 jam_selesai: editingSchedule.jam_selesai,
                 pj: editingSchedule.pj,
                 pengisi: editingSchedule.pengisi || '',
+            });
+            setSelectedTemplate('');
+            setApplyToAll(false);
+        } else if (initialTemplate) {
+            setFormData({
+                kegiatan: initialTemplate.nama,
+                tanggals: [],
+                jam_mulai: initialTemplate.jam_mulai,
+                jam_selesai: initialTemplate.jam_selesai,
+                pj: initialTemplate.pj,
+                pengisi: initialTemplate.pengisi || '',
             });
             setSelectedTemplate('');
             setApplyToAll(false);
@@ -178,7 +191,7 @@ export default function ScheduleForm({
                         {/* Tanggal (Multi) */}
                         <div>
                             <label className="mb-1.5 block text-[10px] font-black uppercase tracking-widest text-slate-400">
-                                Pilih Tanggal
+                                Pilih Tanggal-Tanggal Kegiatan
                             </label>
                             <Popover.Root>
                                 <Popover.Trigger asChild>
@@ -188,8 +201,8 @@ export default function ScheduleForm({
                                     >
                                         <span className={formData.tanggals.length === 0 ? "text-slate-400 font-normal" : ""}>
                                             {formData.tanggals.length > 0
-                                                ? `${formData.tanggals.length} Tanggal Dipilih`
-                                                : "Ketuk untuk memilih..."}
+                                                ? `${formData.tanggals.length} Tanggal Dipilih (Ketuk kalender)`
+                                                : "Klik icon kalender untuk memilih..."}
                                         </span>
                                         <CalendarIcon className="h-4 w-4 text-slate-400" />
                                     </button>

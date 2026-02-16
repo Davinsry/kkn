@@ -9,7 +9,7 @@ import {
   ListChecks,
 } from 'lucide-react';
 import { ScheduleService } from '@/lib/storage';
-import { Schedule, ScheduleFormData } from '@/lib/types';
+import { Schedule, ScheduleFormData, EventTemplate } from '@/lib/types';
 import ScheduleForm from '@/components/schedule-form';
 import ScheduleCard from '@/components/schedule-card';
 import DeleteDialog from '@/components/delete-dialog';
@@ -32,6 +32,7 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isTemplateOpen, setIsTemplateOpen] = useState(false);
+  const [scheduleTemplate, setScheduleTemplate] = useState<EventTemplate | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const loadSchedules = useCallback(async () => {
@@ -269,10 +270,14 @@ export default function HomePage() {
         open={isFormOpen}
         onOpenChange={(open) => {
           setIsFormOpen(open);
-          if (!open) setEditingSchedule(null);
+          if (!open) {
+            setEditingSchedule(null);
+            setScheduleTemplate(null);
+          }
         }}
         onSubmit={handleFormSubmit}
         editingSchedule={editingSchedule}
+        initialTemplate={scheduleTemplate}
       />
 
       {/* Delete Confirmation */}
@@ -289,6 +294,11 @@ export default function HomePage() {
       <TemplateManager
         open={isTemplateOpen}
         onOpenChange={setIsTemplateOpen}
+        onSchedule={(template) => {
+          setIsTemplateOpen(false);
+          setScheduleTemplate(template);
+          setIsFormOpen(true);
+        }}
       />
 
       <SettingsDialog
