@@ -114,14 +114,66 @@ export default function ScheduleBoard() {
         }
     };
 
-    const groupedByDay = useMemo(() => {
-        const grouped: Record<string, WeeklyItem[]> = {};
+    // Generate 100-min time buckets for the left axis
+    // 07:00, 08:40, 10:20, 12:00, 13:40, 15:20, 17:00, 18:40, 20:20, 22:00
+    const TIME_LABELS = ['07:00', '08:40', '10:20', '12:00', '13:40', '15:20', '17:00', '18:40', '20:20'];
+
+    const consolidatedByDay = useMemo(() => {
+        const result: Record<string, any[]> = {};
+
         DAYS.forEach(day => {
-            grouped[day] = items
-                .filter(i => i.day === day)
-                .sort((a, b) => a.timeRange.localeCompare(b.timeRange));
+            const dayItems = items.filter(i => i.day === day);
+
+            const commonGroups: Record<string, {
+                timeRange: string;
+                subject: string;
+                room: string;
+                people: { name: string; id: string }[];
+            }> = {};
+
+            dayItems.forEach(item => {
+                const key = `${item.timeRange}-${item.subject}-${item.room}`;
+                if (!commonGroups[key]) {
+                    commonGroups[key] = {
+                        timeRange: item.timeRange,
+                        subject: item.subject,
+                        room: item.room,
+                        people: []
+                    };
+                }
+                commonGroups[key].people.push({ name: item.person, id: item.id });
+            });
+
+            let consolidatedList = Object.values(commonGroups).sort((a, b) => a.timeRange.localeCompare(b.timeRange));
+
+            // Merge Contiguous
+            const mergedList: any[] = [];
+            consolidatedList.forEach((item, index) => {
+                if (index === 0) {
+                    mergedList.push({ ...item });
+                    return;
+                }
+
+                const prev = mergedList[mergedList.length - 1];
+                const prevPeopleStr = prev.people.map((p: any) => p.name).sort().join(',');
+                const currPeopleStr = item.people.map((p: any) => p.name).sort().join(',');
+
+                const [pStart, pEnd] = prev.timeRange.split(' - ');
+                const [cStart, cEnd] = item.timeRange.split(' - ');
+
+                const isSameActivity = prev.subject === item.subject && prev.room === item.room && prevPeopleStr === currPeopleStr;
+
+                if (isSameActivity) {
+                    prev.timeRange = `${pStart} - ${cEnd}`;
+                } else {
+                    mergedList.push({ ...item });
+                }
+            });
+
+            result[day] = mergedList;
         });
-        return grouped;
+
+        return result;
     }, [items]);
 
     return (
@@ -134,7 +186,7 @@ export default function ScheduleBoard() {
                     <div>
                         <h2 className="text-lg font-black text-slate-900 leading-none">Papan Informasi</h2>
                         <p className="mt-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                            Jadwal Kuliah Mingguan (Pagi - Malam)
+                            Timeline Kuliah Mingguan (7 Hari)
                         </p>
                     </div>
                 </div>
@@ -157,50 +209,76 @@ export default function ScheduleBoard() {
                 </div>
             </div>
 
-            {/* Weekly Grid */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-7">
-                {DAYS.map(day => (
-                    <div key={day} className="flex flex-col gap-3">
-                        <div className="flex items-center gap-2 px-1">
-                            <span className="h-2 w-2 rounded-full bg-indigo-500" />
-                            <h3 className="text-xs font-black text-slate-900 uppercase tracking-tighter">{day}</h3>
+            {/* Timetable Layout */}
+            <div className="overflow-x-auto rounded-3xl border border-slate-100 bg-white p-6 shadow-xl shadow-slate-200/50">
+                <div className="min-w-[1000px]">
+                    <div className="grid grid-cols-[80px_repeat(7,1fr)] gap-4">
+                        {/* Day Headers */}
+                        <div /> {/* Empty for time labels */}
+                        {DAYS.map(day => (
+                            <div key={day} className="text-center font-black text-[11px] text-slate-900 uppercase tracking-widest pb-4">
+                                {day}
+                            </div>
+                        ))}
+
+                        {/* Time Grid with Buckets */}
+                        <div className="flex flex-col gap-8 pt-2">
+                            {TIME_LABELS.map(time => (
+                                <div key={time} className="h-20 flex flex-col justify-start">
+                                    <div className="text-[10px] font-black text-slate-400">{time}</div>
+                                    <div className="w-full border-b border-dashed border-slate-100 mt-2" />
+                                </div>
+                            ))}
                         </div>
 
-                        <div className="flex flex-col gap-2 min-h-[100px]">
-                            {groupedByDay[day].length === 0 ? (
-                                <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 py-4 text-center">
-                                    <p className="text-[10px] font-bold text-slate-300">Zonk</p>
-                                </div>
-                            ) : (
-                                groupedByDay[day].map(item => {
-                                    const config = PERSON_CONFIG[item.person] || PERSON_CONFIG['Lainnya'];
+                        {/* Daily Columns */}
+                        {DAYS.map(day => (
+                            <div key={day} className="relative pt-2 min-h-[600px] border-l border-slate-50 last:border-r">
+                                {consolidatedByDay[day].map((item, idx) => {
+                                    // Calculate vertical position based on startTime
+                                    // Base 07:00 = 0px
+                                    // 100 minutes = ~120px height for visuals
+                                    const [start, end] = item.timeRange.split(' - ');
+                                    const [sh, sm] = start.split(':').map(Number);
+                                    const minutesSinceStart = (sh - 7) * 60 + sm;
+                                    const topPos = (minutesSinceStart / 100) * 112; // Adjusted for gap
+
                                     return (
                                         <div
-                                            key={item.id}
-                                            className={`rounded-xl border ${config.border} ${config.light} p-2.5 transition-all hover:shadow-md hover:-translate-y-0.5`}
+                                            key={`${day}-${idx}`}
+                                            style={{ top: `${topPos}px` }}
+                                            className={`absolute left-1 right-1 rounded-2xl border border-slate-200 bg-white p-3 transition-all hover:z-10 hover:shadow-xl hover:-translate-y-1 shadow-sm group`}
                                         >
-                                            <div className="flex items-center justify-between mb-1.5">
-                                                <div className={`rounded px-1.5 py-0.5 text-[8px] font-black text-white ${config.color}`}>
-                                                    {item.person.toUpperCase()}
-                                                </div>
-                                                <span className="text-[9px] font-black text-slate-400">{item.timeRange}</span>
+                                            <div className="flex flex-wrap gap-1 mb-2">
+                                                {item.people.map((p: any) => (
+                                                    <div key={p.id} className={`rounded-lg px-2 py-0.5 text-[8px] font-black text-white shadow-sm transition-transform group-hover:scale-110 ${PERSON_CONFIG[p.name]?.color || 'bg-slate-500'}`}>
+                                                        {p.name.toUpperCase()}
+                                                    </div>
+                                                ))}
                                             </div>
-                                            <h4 className={`text-[11px] font-black leading-tight ${config.text}`}>
+
+                                            <div className="flex items-center justify-between mb-1.5">
+                                                <div className="flex items-center gap-1.5 bg-slate-50 px-1.5 py-0.5 rounded-md">
+                                                    <Clock className="h-2.5 w-2.5 text-slate-400" />
+                                                    <span className="text-[9px] font-black text-slate-500">{item.timeRange}</span>
+                                                </div>
+                                            </div>
+                                            <h4 className={`text-[11px] font-black leading-tight text-slate-800 group-hover:text-indigo-600 transition-colors`}>
                                                 {item.subject}
                                             </h4>
                                             {item.room && (
-                                                <div className="mt-1 flex items-center gap-1 opacity-60">
-                                                    <MapPin className="h-2.5 w-2.5" />
+                                                <div className="mt-2 flex items-center gap-1.5 text-slate-400">
+                                                    <MapPin className="h-3 w-3" />
                                                     <span className="text-[9px] font-bold">{item.room}</span>
                                                 </div>
                                             )}
                                         </div>
                                     );
-                                })
-                            )}
-                        </div>
+                                })}
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
 
             {/* Edit Modal / Person Selection */}
@@ -223,8 +301,8 @@ export default function ScheduleBoard() {
                                     key={p}
                                     onClick={() => setSelectedPerson(p)}
                                     className={`rounded-xl border-2 p-2 text-center transition-all ${selectedPerson === p
-                                            ? `${PERSON_CONFIG[p].border} ${PERSON_CONFIG[p].light} scale-105`
-                                            : 'border-slate-100 hover:border-slate-200'
+                                        ? `${PERSON_CONFIG[p].border} ${PERSON_CONFIG[p].light} scale-105`
+                                        : 'border-slate-100 hover:border-slate-200'
                                         }`}
                                 >
                                     <div className={`mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full text-white ${PERSON_CONFIG[p].color}`}>
