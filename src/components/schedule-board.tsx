@@ -29,6 +29,19 @@ const PERSON_CONFIG: Record<string, { color: string; border: string; text: strin
     'Lainnya': { color: 'bg-slate-500', border: 'border-slate-200', text: 'text-slate-700', light: 'bg-slate-50' },
 };
 
+const TIME_SLOTS = [
+    '07:00 - 08:40',
+    '08:50 - 10:30',
+    '10:40 - 11:30',
+    '10:40 - 12:20',
+    '12:20 - 13:10',
+    '13:20 - 15:00',
+    '15:30 - 17:10',
+    '15:30 - 18:00',
+    '18:30 - 20:10',
+    '19:00 - 21:00',
+];
+
 export default function ScheduleBoard() {
     const [items, setItems] = useState<WeeklyItem[]>([]);
     const [isImporting, setIsImporting] = useState(false);
@@ -428,14 +441,15 @@ export default function ScheduleBoard() {
                                     >
                                         {DAYS.map(day => <option key={day} value={day}>{day}</option>)}
                                     </select>
-                                    <input
-                                        type="text"
-                                        placeholder="Jam (cth: 08:00 - 10:00)"
+                                    <select
                                         value={formTime}
                                         onChange={e => setFormTime(e.target.value)}
                                         required
                                         className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
-                                    />
+                                    >
+                                        <option value="">Pilih Jam</option>
+                                        {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
+                                    </select>
                                     <input
                                         type="text"
                                         placeholder="Mata Kuliah"
