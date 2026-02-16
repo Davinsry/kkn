@@ -132,3 +132,21 @@
 | Kamis  | 10:40 - 11:30 | TSS51145 | Jembatan               | B     | M. Ibnu Syamsi; Edi Hartono;   | G5.1.6              |
 | Kamis  | 12:20 - 13:10 | TSS51145 | Jembatan               | B     | M. Ibnu Syamsi; Edi Hartono;   | G5.1.6              |
 | Kamis  | 15:30 - 18:00 | UMY61106 | Kewirausahaan          | A     | Surya Budi Lesmana;            | R. Seminar TS, Lt 1 |
+
+# Jadwal Kuliah Tyas
+
+| Hari   | Jam           | Kode    | Mata Kuliah                       | Kelas | Dosen                          | Ruang  |
+| :----- | :------------ | :------ | :-------------------------------- | :---: | :----------------------------- | :----- |
+| Senin  | 10:40 - 11:30 | KU473   | Academic Presentation             | A     | Arifah Mardiningrum;           | E8.407 |
+| Senin  | 12:20 - 13:10 | KU473   | Academic Presentation             | A     | Arifah Mardiningrum;           | E8.407 |
+| Selasa | 08:50 - 10:30 | KP3710  | Japanese Language                 | A     | Rosi Rosiah;                   | E8.403 |
+| Selasa | 15:30 - 18:00 | KL241   | Language and Education in Quran   | A     | Endro Dwi Hatmanto;            | E8.407 |
+| Rabu   | 07:00 - 08:40 | KL163   | Business Management               | A     | Azmi Muhammad Islam;           | E8.406 |
+| Rabu   | 08:50 - 10:30 | MKWU007 | Citizenship                       | T     | Akif Khilmiyah;                | E8.411 |
+| Kamis  | 08:50 - 10:30 | KP374   | Arabic Language                   | A     | Roojil Fadhillah bin Akhmad;   | E8.408 |
+| Kamis  | 10:40 - 11:30 | KU366   | Microteaching                     | A     | Ika Wahyuni Lestari;           | E8.406 |
+| Kamis  | 12:20 - 13:10 | KU366   | Microteaching                     | A     | Ika Wahyuni Lestari;           | E8.406 |
+| Jumat  | 07:00 - 08:40 | KL361   | International LanguageTesting     | B     | Sri Rejeki Murtiningsih;       | E8.406 |
+| Jumat  | 08:50 - 10:30 | KL361   | International LanguageTesting     | B     | Sri Rejeki Murtiningsih;       | E8.406 |
+| Jumat  | 13:20 - 15:00 | KP377   | English for Tourism               | A     | Puthut Ardianto;               | E8.403 |
+| Jumat  | 15:30 - 18:00 | KU366   | Microteaching                     | A     | Ika Wahyuni Lestari;           | E8.408 |

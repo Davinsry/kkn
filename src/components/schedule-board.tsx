@@ -25,6 +25,7 @@ const PERSON_CONFIG: Record<string, { color: string; border: string; text: strin
     'Fia': { color: 'bg-indigo-500', border: 'border-indigo-200', text: 'text-indigo-700', light: 'bg-indigo-50' },
     'Agung': { color: 'bg-orange-500', border: 'border-orange-200', text: 'text-orange-700', light: 'bg-orange-50' },
     'Echa': { color: 'bg-teal-500', border: 'border-teal-200', text: 'text-teal-700', light: 'bg-teal-50' },
+    'Tyas': { color: 'bg-violet-500', border: 'border-violet-200', text: 'text-violet-700', light: 'bg-violet-50' },
     'Lainnya': { color: 'bg-slate-500', border: 'border-slate-200', text: 'text-slate-700', light: 'bg-slate-50' },
 };
 
