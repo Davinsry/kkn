@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Pencil, Import, Plus, X, Trash2, Clock, MapPin, User } from 'lucide-react';
+import { Pencil, Import, Plus, X, Trash2, Clock, MapPin, User, Check } from 'lucide-react';
 
 export interface WeeklyItem {
     id: string;
@@ -475,7 +475,7 @@ export default function ScheduleBoard() {
                                                         <X className="h-5 w-5" />
                                                     </button>
                                                     <button type="submit" title="Simpan Perubahan" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color} hover:brightness-110 transition-all`}>
-                                                        <Plus className="h-5 w-5 rotate-45" />
+                                                        <Check className="h-5 w-5" />
                                                     </button>
                                                 </>
                                             ) : (
