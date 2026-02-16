@@ -34,6 +34,7 @@ export default function ScheduleBoard() {
     const [isImporting, setIsImporting] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
+    const [editingId, setEditingId] = useState<string | null>(null);
 
     // Form states
     const [formDay, setFormDay] = useState('Senin');
@@ -80,7 +81,7 @@ export default function ScheduleBoard() {
         e.preventDefault();
         if (!selectedPerson) return;
 
-        const newItem = {
+        const payload = {
             person: selectedPerson,
             day: formDay,
             timeRange: formTime,
@@ -90,18 +91,42 @@ export default function ScheduleBoard() {
         };
 
         try {
-            await fetch('/api/weekly-schedule', {
-                method: 'POST',
-                body: JSON.stringify(newItem),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            if (editingId) {
+                await fetch(`/api/weekly-schedule/${editingId}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify(payload),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                setEditingId(null);
+            } else {
+                await fetch('/api/weekly-schedule', {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
             setFormTime('');
             setFormSubject('');
             setFormRoom('');
             fetchWeekly();
         } catch {
-            alert('Gagal menambah');
+            alert('Gagal menyimpan');
         }
+    };
+
+    const startEdit = (item: WeeklyItem) => {
+        setEditingId(item.id);
+        setFormDay(item.day);
+        setFormTime(item.timeRange);
+        setFormSubject(item.subject);
+        setFormRoom(item.room);
+    };
+
+    const cancelEdit = () => {
+        setEditingId(null);
+        setFormTime('');
+        setFormSubject('');
+        setFormRoom('');
     };
 
     const handleDelete = async (id: string) => {
@@ -395,11 +420,11 @@ export default function ScheduleBoard() {
                                     <h4 className="text-sm font-black text-slate-900 tracking-tight">Jadwal: {selectedPerson}</h4>
                                 </div>
 
-                                <form onSubmit={handleAddItem} className="grid grid-cols-1 gap-3 mb-6 sm:grid-cols-4">
+                                <form onSubmit={handleAddItem} className="grid grid-cols-1 gap-3 mb-6 sm:grid-cols-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
                                     <select
                                         value={formDay}
                                         onChange={e => setFormDay(e.target.value)}
-                                        className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold focus:outline-none"
+                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                     >
                                         {DAYS.map(day => <option key={day} value={day}>{day}</option>)}
                                     </select>
@@ -409,7 +434,7 @@ export default function ScheduleBoard() {
                                         value={formTime}
                                         onChange={e => setFormTime(e.target.value)}
                                         required
-                                        className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold focus:outline-none"
+                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                     />
                                     <input
                                         type="text"
@@ -417,7 +442,7 @@ export default function ScheduleBoard() {
                                         value={formSubject}
                                         onChange={e => setFormSubject(e.target.value)}
                                         required
-                                        className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold focus:outline-none"
+                                        className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                     />
                                     <div className="flex gap-2">
                                         <input
@@ -425,11 +450,24 @@ export default function ScheduleBoard() {
                                             placeholder="Ruang"
                                             value={formRoom}
                                             onChange={e => setFormRoom(e.target.value)}
-                                            className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold focus:outline-none"
+                                            className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold focus:outline-none"
                                         />
-                                        <button type="submit" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color}`}>
-                                            <Plus className="h-5 w-5" />
-                                        </button>
+                                        <div className="flex gap-1">
+                                            {editingId ? (
+                                                <>
+                                                    <button type="button" onClick={cancelEdit} className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-600 shadow-md">
+                                                        <X className="h-5 w-5" />
+                                                    </button>
+                                                    <button type="submit" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color}`}>
+                                                        <Plus className="h-5 w-5 rotate-45" /> {/* Save icon style */}
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <button type="submit" className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${PERSON_CONFIG[selectedPerson].color}`}>
+                                                    <Plus className="h-5 w-5" />
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 </form>
 
@@ -440,7 +478,7 @@ export default function ScheduleBoard() {
                                         items.filter(i => i.person === selectedPerson)
                                             .sort((a, b) => DAYS.indexOf(a.day) - DAYS.indexOf(b.day) || a.timeRange.localeCompare(b.timeRange))
                                             .map(item => (
-                                                <div key={item.id} className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50/50 p-3">
+                                                <div key={item.id} className="flex items-center justify-between rounded-2xl border border-slate-100 bg-white p-3 shadow-sm">
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-2 mb-1">
                                                             <span className="text-[9px] font-black uppercase text-indigo-500">{item.day}</span>
@@ -449,9 +487,14 @@ export default function ScheduleBoard() {
                                                         <h5 className="text-xs font-black text-slate-900">{item.subject}</h5>
                                                         <p className="text-[10px] font-bold text-slate-400">{item.room}</p>
                                                     </div>
-                                                    <button onClick={() => handleDelete(item.id)} className="rounded-xl p-2 text-slate-300 hover:bg-rose-50 hover:text-rose-500">
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </button>
+                                                    <div className="flex items-center gap-1">
+                                                        <button onClick={() => startEdit(item)} className="rounded-xl p-2 text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                                                            <Pencil className="h-4 w-4" />
+                                                        </button>
+                                                        <button onClick={() => handleDelete(item.id)} className="rounded-xl p-2 text-slate-300 hover:bg-rose-50 hover:text-rose-500 transition-colors">
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             ))
                                     )}
